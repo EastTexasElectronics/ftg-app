@@ -1,0 +1,586 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C160AE42C665C350066B7AB /* File_Tree_GeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AE32C665C350066B7AB /* File_Tree_GeneratorApp.swift */; };
+		8C160AE62C665C350066B7AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AE52C665C350066B7AB /* ContentView.swift */; };
+		8C160AE82C665C360066B7AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C160AE72C665C360066B7AB /* Assets.xcassets */; };
+		8C160AEB2C665C360066B7AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C160AEA2C665C360066B7AB /* Preview Assets.xcassets */; };
+		8C160AF62C665C360066B7AB /* File_Tree_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AF52C665C360066B7AB /* File_Tree_GeneratorTests.swift */; };
+		8C160B002C665C360066B7AB /* File_Tree_GeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AFF2C665C360066B7AB /* File_Tree_GeneratorUITests.swift */; };
+		8C160B022C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160B012C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C160AF22C665C360066B7AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C160AD82C665C350066B7AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C160ADF2C665C350066B7AB;
+			remoteInfo = "File Tree Generator";
+		};
+		8C160AFC2C665C360066B7AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C160AD82C665C350066B7AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C160ADF2C665C350066B7AB;
+			remoteInfo = "File Tree Generator";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8C160AE02C665C350066B7AB /* File Tree Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "File Tree Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C160AE32C665C350066B7AB /* File_Tree_GeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_Tree_GeneratorApp.swift; sourceTree = "<group>"; };
+		8C160AE52C665C350066B7AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8C160AE72C665C360066B7AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C160AEA2C665C360066B7AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8C160AEC2C665C360066B7AB /* File_Tree_Generator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = File_Tree_Generator.entitlements; sourceTree = "<group>"; };
+		8C160AF12C665C360066B7AB /* File Tree GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "File Tree GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C160AF52C665C360066B7AB /* File_Tree_GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_Tree_GeneratorTests.swift; sourceTree = "<group>"; };
+		8C160AFB2C665C360066B7AB /* File Tree GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "File Tree GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C160AFF2C665C360066B7AB /* File_Tree_GeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_Tree_GeneratorUITests.swift; sourceTree = "<group>"; };
+		8C160B012C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_Tree_GeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C160ADD2C665C350066B7AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C160AEE2C665C360066B7AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C160AF82C665C360066B7AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C160AD72C665C350066B7AB = {
+			isa = PBXGroup;
+			children = (
+				8C160AE22C665C350066B7AB /* File Tree Generator */,
+				8C160AF42C665C360066B7AB /* File Tree GeneratorTests */,
+				8C160AFE2C665C360066B7AB /* File Tree GeneratorUITests */,
+				8C160AE12C665C350066B7AB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C160AE12C665C350066B7AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C160AE02C665C350066B7AB /* File Tree Generator.app */,
+				8C160AF12C665C360066B7AB /* File Tree GeneratorTests.xctest */,
+				8C160AFB2C665C360066B7AB /* File Tree GeneratorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C160AE22C665C350066B7AB /* File Tree Generator */ = {
+			isa = PBXGroup;
+			children = (
+				8C160AE32C665C350066B7AB /* File_Tree_GeneratorApp.swift */,
+				8C160AE52C665C350066B7AB /* ContentView.swift */,
+				8C160AE72C665C360066B7AB /* Assets.xcassets */,
+				8C160AEC2C665C360066B7AB /* File_Tree_Generator.entitlements */,
+				8C160AE92C665C360066B7AB /* Preview Content */,
+			);
+			path = "File Tree Generator";
+			sourceTree = "<group>";
+		};
+		8C160AE92C665C360066B7AB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8C160AEA2C665C360066B7AB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8C160AF42C665C360066B7AB /* File Tree GeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C160AF52C665C360066B7AB /* File_Tree_GeneratorTests.swift */,
+			);
+			path = "File Tree GeneratorTests";
+			sourceTree = "<group>";
+		};
+		8C160AFE2C665C360066B7AB /* File Tree GeneratorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8C160AFF2C665C360066B7AB /* File_Tree_GeneratorUITests.swift */,
+				8C160B012C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift */,
+			);
+			path = "File Tree GeneratorUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C160ADF2C665C350066B7AB /* File Tree Generator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C160B052C665C360066B7AB /* Build configuration list for PBXNativeTarget "File Tree Generator" */;
+			buildPhases = (
+				8C160ADC2C665C350066B7AB /* Sources */,
+				8C160ADD2C665C350066B7AB /* Frameworks */,
+				8C160ADE2C665C350066B7AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "File Tree Generator";
+			productName = "File Tree Generator";
+			productReference = 8C160AE02C665C350066B7AB /* File Tree Generator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C160AF02C665C360066B7AB /* File Tree GeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C160B082C665C360066B7AB /* Build configuration list for PBXNativeTarget "File Tree GeneratorTests" */;
+			buildPhases = (
+				8C160AED2C665C360066B7AB /* Sources */,
+				8C160AEE2C665C360066B7AB /* Frameworks */,
+				8C160AEF2C665C360066B7AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C160AF32C665C360066B7AB /* PBXTargetDependency */,
+			);
+			name = "File Tree GeneratorTests";
+			productName = "File Tree GeneratorTests";
+			productReference = 8C160AF12C665C360066B7AB /* File Tree GeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8C160AFA2C665C360066B7AB /* File Tree GeneratorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C160B0B2C665C360066B7AB /* Build configuration list for PBXNativeTarget "File Tree GeneratorUITests" */;
+			buildPhases = (
+				8C160AF72C665C360066B7AB /* Sources */,
+				8C160AF82C665C360066B7AB /* Frameworks */,
+				8C160AF92C665C360066B7AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C160AFD2C665C360066B7AB /* PBXTargetDependency */,
+			);
+			name = "File Tree GeneratorUITests";
+			productName = "File Tree GeneratorUITests";
+			productReference = 8C160AFB2C665C360066B7AB /* File Tree GeneratorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C160AD82C665C350066B7AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					8C160ADF2C665C350066B7AB = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					8C160AF02C665C360066B7AB = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 8C160ADF2C665C350066B7AB;
+					};
+					8C160AFA2C665C360066B7AB = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 8C160ADF2C665C350066B7AB;
+					};
+				};
+			};
+			buildConfigurationList = 8C160ADB2C665C350066B7AB /* Build configuration list for PBXProject "File Tree Generator" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C160AD72C665C350066B7AB;
+			productRefGroup = 8C160AE12C665C350066B7AB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C160ADF2C665C350066B7AB /* File Tree Generator */,
+				8C160AF02C665C360066B7AB /* File Tree GeneratorTests */,
+				8C160AFA2C665C360066B7AB /* File Tree GeneratorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C160ADE2C665C350066B7AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C160AEB2C665C360066B7AB /* Preview Assets.xcassets in Resources */,
+				8C160AE82C665C360066B7AB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C160AEF2C665C360066B7AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C160AF92C665C360066B7AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C160ADC2C665C350066B7AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C160AE62C665C350066B7AB /* ContentView.swift in Sources */,
+				8C160AE42C665C350066B7AB /* File_Tree_GeneratorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C160AED2C665C360066B7AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C160AF62C665C360066B7AB /* File_Tree_GeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C160AF72C665C360066B7AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C160B022C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift in Sources */,
+				8C160B002C665C360066B7AB /* File_Tree_GeneratorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C160AF32C665C360066B7AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C160ADF2C665C350066B7AB /* File Tree Generator */;
+			targetProxy = 8C160AF22C665C360066B7AB /* PBXContainerItemProxy */;
+		};
+		8C160AFD2C665C360066B7AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C160ADF2C665C350066B7AB /* File Tree Generator */;
+			targetProxy = 8C160AFC2C665C360066B7AB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8C160B032C665C360066B7AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8C160B042C665C360066B7AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		8C160B062C665C360066B7AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "File Tree Generator/File_Tree_Generator.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"File Tree Generator/Preview Content\"";
+				DEVELOPMENT_TEAM = XDRGP2DC92;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-Generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8C160B072C665C360066B7AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "File Tree Generator/File_Tree_Generator.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"File Tree Generator/Preview Content\"";
+				DEVELOPMENT_TEAM = XDRGP2DC92;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-Generator";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8C160B092C665C360066B7AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XDRGP2DC92;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/File Tree Generator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/File Tree Generator";
+			};
+			name = Debug;
+		};
+		8C160B0A2C665C360066B7AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XDRGP2DC92;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-GeneratorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/File Tree Generator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/File Tree Generator";
+			};
+			name = Release;
+		};
+		8C160B0C2C665C360066B7AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XDRGP2DC92;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-GeneratorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "File Tree Generator";
+			};
+			name = Debug;
+		};
+		8C160B0D2C665C360066B7AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XDRGP2DC92;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-GeneratorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "File Tree Generator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C160ADB2C665C350066B7AB /* Build configuration list for PBXProject "File Tree Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C160B032C665C360066B7AB /* Debug */,
+				8C160B042C665C360066B7AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C160B052C665C360066B7AB /* Build configuration list for PBXNativeTarget "File Tree Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C160B062C665C360066B7AB /* Debug */,
+				8C160B072C665C360066B7AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C160B082C665C360066B7AB /* Build configuration list for PBXNativeTarget "File Tree GeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C160B092C665C360066B7AB /* Debug */,
+				8C160B0A2C665C360066B7AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C160B0B2C665C360066B7AB /* Build configuration list for PBXNativeTarget "File Tree GeneratorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C160B0C2C665C360066B7AB /* Debug */,
+				8C160B0D2C665C360066B7AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C160AD82C665C350066B7AB /* Project object */;
+}
