@@ -3,6 +3,7 @@ import SwiftUI
 // TODO: Add link to help page roberthavelaar.com/file-tree-generator-app#help
 // TODO: Add Email Support link contact@eastetexaselectronics.com (should open default mail client)
 // TODO: Add Close Button
+// TODO: Update help content to contain all current app content.
 
 struct HelpView: View {
     var body: some View {
