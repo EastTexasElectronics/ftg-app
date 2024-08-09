@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A view that provides help and instructions on how to use the File Tree Generator application.
 struct HelpView: View {
     @Environment(\.presentationMode) var presentationMode
 
@@ -23,6 +24,41 @@ struct HelpView: View {
                 Text("3. Use the 'Select Languages/Frameworks' button to exclude specific patterns.")
                 Text("4. You can manually add custom exclusion patterns as well by entering them in the 'Exclusion Patterns' text field.")
                 Text("5. Click 'Generate File Tree' to create the file tree.")
+
+                // New Section for CLI instructions
+                Text("Using the Command Line Interface (CLI):")
+                    .font(.headline)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
+
+                Text("You can also generate a file tree using the `ftg` command from the terminal.")
+                Text("To use the CLI tool, simply open your terminal and type:")
+                Text("ftg -d <input_directory> -o <output_file> -e <exclusion_patterns> -f <format>")
+                    .font(.system(.body, design: .monospaced))
+                    .padding(.vertical, 5)
+                    .contextMenu {
+                        Button(action: {
+                            NSPasteboard.general.clearContents()
+                            NSPasteboard.general.setString("ftg -d <input_directory> -o <output_file> -e <exclusion_patterns> -f <format>", forType: .string)
+                        }) {
+                            Text("Copy to Clipboard")
+                            Image(systemName: "doc.on.doc")
+                        }
+                    }
+
+                Text("For example, to generate a Markdown file tree of your `~/projects` directory, excluding `node_modules` and `.git`, you can use:")
+                Text("ftg -d ~/projects -o tree.md -e node_modules,.git -f md")
+                    .font(.system(.body, design: .monospaced))
+                    .padding(.vertical, 5)
+                    .contextMenu {
+                        Button(action: {
+                            NSPasteboard.general.clearContents()
+                            NSPasteboard.general.setString("ftg -d ~/projects -o tree.md -e node_modules,.git -f md", forType: .string)
+                        }) {
+                            Text("Copy to Clipboard")
+                            Image(systemName: "doc.on.doc")
+                        }
+                    }
             }
             .padding(.horizontal, 40)
             .padding(.bottom, 20)
@@ -68,6 +104,7 @@ struct HelpView: View {
     }
 }
 
+// MARK: - Preview
 struct HelpView_Previews: PreviewProvider {
     static var previews: some View {
         HelpView()

@@ -1,9 +1,15 @@
 import SwiftUI
 
-// A view that provides information about the app
+/// A view that provides information about the File Tree Generator app,
+/// including the current version, latest version, and links to relevant resources.
 struct AboutView: View {
+    /// A binding to control the presentation of the view.
     @Binding var isPresented: Bool
+    
+    /// The latest version available on the App Store, if any.
     var latestVersion: String? = nil
+    
+    /// The URL to the App Store page for the app.
     private let appStoreURL = "https://apps.apple.com/app/id6581479697"
 
     var body: some View {
@@ -17,22 +23,22 @@ struct AboutView: View {
                         .padding(.bottom, 10)
                         .frame(maxWidth: .infinity, alignment: .center)
 
-                    // Update message
+                    // Update message, shown if a new version is available
                     if latestVersion != nil {
                         Text("An update is available. Please visit the App Store to download the latest version.")
                             .foregroundColor(.red)
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
 
-                    // App version
+                    // Current app version
                     AboutSection(title: "App Version:", description: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown")
                     
-                    // Latest version
+                    // Latest version if available
                     if let latestVersion = latestVersion {
                         AboutSection(title: "Latest Version:", description: latestVersion)
                     }
 
-                    // GitHub link
+                    // Website link
                     AboutSection(title: "Website:", description: "Visit our website for more information.", link: "https://roberthavelaar.dev/S2L")
                     
                     // Contact email link
@@ -42,7 +48,7 @@ struct AboutView: View {
             }
 
             HStack {
-                // Store button
+                // Button to update the app or leave a review on the App Store
                 Button(action: {
                     if let url = URL(string: appStoreURL) {
                         NSWorkspace.shared.open(url)
@@ -59,7 +65,7 @@ struct AboutView: View {
 
                 Spacer()
                 
-                // Close button
+                // Close button to dismiss the About view
                 Button("Close") {
                     isPresented = false
                 }
@@ -74,9 +80,16 @@ struct AboutView: View {
     }
 }
 
+/// A view that displays a section of information in the AboutView, which may include a title,
+/// description, and optionally a link.
 struct AboutSection: View {
+    /// The title of the section.
     let title: String
+    
+    /// The description or content of the section.
     let description: String
+    
+    /// An optional URL to be displayed as a link.
     let link: String?
 
     init(title: String, description: String, link: String? = nil) {
@@ -89,6 +102,8 @@ struct AboutSection: View {
         VStack(alignment: .leading, spacing: 5) {
             Text(title)
                 .fontWeight(.semibold)
+            
+            // Display a link if provided, otherwise just the description text
             if let link = link, let url = URL(string: link) {
                 Link(description, destination: url)
                     .foregroundColor(.blue)
@@ -101,6 +116,7 @@ struct AboutSection: View {
     }
 }
 
+// MARK: - Preview
 struct AboutView_Previews: PreviewProvider {
     @State static var isPresented = true
 

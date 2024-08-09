@@ -1,11 +1,14 @@
 import Foundation
 
+/// A struct representing a language exclusion pattern.
+/// Each `LanguageExclusion` consists of a name and an array of file patterns to exclude.
 struct LanguageExclusion {
     let name: String
     let patterns: [String]
 }
-// TODO: Add documentation for the languages and exclusions
-// List if languages and exclusions
+
+/// A list of languages, tools, and corresponding exclusion patterns.
+/// This list includes programming languages, frameworks, IDE-specific files, and certain configurations that are commonly excluded when generating file trees.
 let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "ABC", patterns: ["*.abc"]),
     LanguageExclusion(name: "ABAP", patterns: ["*.abap"]),
@@ -39,6 +42,7 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "Emacs Lisp", patterns: ["*.el"]),
     LanguageExclusion(name: "Erlang", patterns: ["*.erl"]),
     LanguageExclusion(name: "Euphoria", patterns: ["*.e"]),
+    LanguageExclusion(name: "ESLint", patterns: [".eslintcache"]),
     LanguageExclusion(name: "F#", patterns: ["*.fs"]),
     LanguageExclusion(name: "Fortran", patterns: ["*.f", "*.for"]),
     LanguageExclusion(name: "Genie", patterns: ["*.gs"]),
@@ -51,12 +55,14 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "Io", patterns: ["*.io"]),
     LanguageExclusion(name: "Java", patterns: ["*.class", "*.jar"]),
     LanguageExclusion(name: "JavaScript", patterns: ["node_modules", "dist", "build"]),
+    LanguageExclusion(name: "JetBrains", patterns: [".idea", "*.iml"]),
     LanguageExclusion(name: "Julia", patterns: ["*.jl"]),
     LanguageExclusion(name: "Kotlin", patterns: ["*.kt"]),
     LanguageExclusion(name: "Korn shell", patterns: [".kshrc"]),
     LanguageExclusion(name: "LabVIEW", patterns: ["*.vi"]),
     LanguageExclusion(name: "Ladder Logic", patterns: ["*.lad"]),
     LanguageExclusion(name: "Lisp", patterns: ["*.lisp"]),
+    LanguageExclusion(name: "Lit", patterns: ["node_modules", "dist"]),
     LanguageExclusion(name: "LiveCode", patterns: ["*.livecode"]),
     LanguageExclusion(name: "Logo", patterns: []),
     LanguageExclusion(name: "Lua", patterns: ["*.lua"]),
@@ -65,6 +71,7 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "ML", patterns: ["*.ml"]),
     LanguageExclusion(name: "MQL4", patterns: ["*.mq4"]),
     LanguageExclusion(name: "NATURAL", patterns: ["*.nat"]),
+    LanguageExclusion(name: "Next.js", patterns: ["node_modules", ".next", "out"]),
     LanguageExclusion(name: "NXT-G", patterns: ["*.rbt"]),
     LanguageExclusion(name: "Objective-C", patterns: ["*.m", "*.h"]),
     LanguageExclusion(name: "OpenCL", patterns: ["*.cl"]),
@@ -76,11 +83,14 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "PL/I", patterns: ["*.pli"]),
     LanguageExclusion(name: "PL/SQL", patterns: ["*.pls"]),
     LanguageExclusion(name: "PostScript", patterns: ["*.ps"]),
+    LanguageExclusion(name: "Preact", patterns: ["node_modules", "dist"]),
+    LanguageExclusion(name: "Prettier", patterns: [".prettiercache"]),
     LanguageExclusion(name: "Prolog", patterns: ["*.pl"]),
     LanguageExclusion(name: "Python", patterns: ["__pycache__", "*.pyc"]),
     LanguageExclusion(name: "Q", patterns: ["*.q"]),
     LanguageExclusion(name: "R", patterns: ["*.RData", "*.rds"]),
     LanguageExclusion(name: "Racket", patterns: ["*.rkt"]),
+    LanguageExclusion(name: "React", patterns: ["node_modules", ".next", "build"]),
     LanguageExclusion(name: "Red", patterns: ["*.red"]),
     LanguageExclusion(name: "Ring", patterns: ["*.ring"]),
     LanguageExclusion(name: "Ruby", patterns: ["Gemfile.lock"]),
@@ -91,9 +101,11 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "Scheme", patterns: ["*.scm"]),
     LanguageExclusion(name: "Scratch", patterns: []),
     LanguageExclusion(name: "Smalltalk", patterns: ["*.st"]),
+    LanguageExclusion(name: "Solid.js", patterns: ["node_modules", "dist"]),
     LanguageExclusion(name: "SPARK", patterns: ["*.adb"]),
     LanguageExclusion(name: "SQL", patterns: ["*.sql"]),
     LanguageExclusion(name: "Stata", patterns: ["*.do"]),
+    LanguageExclusion(name: "Stencil", patterns: ["node_modules", "dist"]),
     LanguageExclusion(name: "Swift", patterns: [".build", "DerivedData"]),
     LanguageExclusion(name: "Tcl", patterns: ["*.tcl"]),
     LanguageExclusion(name: "Transact-SQL", patterns: ["*.sql"]),
@@ -104,8 +116,10 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "Verilog", patterns: ["*.v"]),
     LanguageExclusion(name: "VHDL", patterns: ["*.vhd"]),
     LanguageExclusion(name: "Visual FoxPro", patterns: ["*.prg"]),
+    LanguageExclusion(name: "VS Code", patterns: [".vscode", "*.code-workspace"]),
+    LanguageExclusion(name: "Vue.js", patterns: ["node_modules", "dist"]),
     LanguageExclusion(name: "WebAssembly", patterns: ["*.wasm"]),
     LanguageExclusion(name: "XML", patterns: ["*.xml"]),
     LanguageExclusion(name: "YAML", patterns: ["*.yaml", "*.yml"]),
     LanguageExclusion(name: "Zsh", patterns: [".zshrc", ".zprofile"])
-].sorted(by: { $0.name < $1.name })
+].sorted(by: { $0.name < $1.name })  // Sort the languages alphabetically by name

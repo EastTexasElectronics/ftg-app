@@ -1,5 +1,9 @@
 import SwiftUI
 
+/// A view that provides directory and file selection fields for input and output paths.
+/// - Parameters:
+///   - inputDirectory: A binding to the path of the selected input directory.
+///   - outputFile: A binding to the path of the selected output file.
 struct DirectorySelectionView: View {
     @Binding var inputDirectory: String
     @Binding var outputFile: String
@@ -11,6 +15,7 @@ struct DirectorySelectionView: View {
         }
     }
 
+    /// Opens a panel to select a directory and updates the `inputDirectory` binding.
     private func selectDirectory() {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true
@@ -23,6 +28,7 @@ struct DirectorySelectionView: View {
         }
     }
 
+    /// Opens a panel to select a file location and updates the `outputFile` binding.
     private func selectOutputFile() {
         let panel = NSSavePanel()
         panel.title = "Select Output File"
@@ -32,5 +38,17 @@ struct DirectorySelectionView: View {
                 outputFile = url.path
             }
         }
+    }
+}
+
+// MARK: - Preview
+struct DirectorySelectionView_Previews: PreviewProvider {
+    @State static var inputDirectory: String = ""
+    @State static var outputFile: String = ""
+
+    static var previews: some View {
+        DirectorySelectionView(inputDirectory: $inputDirectory, outputFile: $outputFile)
+            .padding()
+            .previewLayout(.sizeThatFits)
     }
 }

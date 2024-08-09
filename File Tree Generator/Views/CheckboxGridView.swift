@@ -6,7 +6,7 @@ import SwiftUI
  - Parameters:
     - selectedLanguages: A binding to a set of selected languages/frameworks.
     - exclusionList: A binding to a set of exclusion patterns based on the selected languages/frameworks.
-*/
+ */
 struct CheckboxGridView: View {
     @Binding var selectedLanguages: Set<String>
     @Binding var exclusionList: Set<String>
@@ -31,6 +31,7 @@ struct CheckboxGridView: View {
                         CheckboxView(isChecked: tempSelectedLanguages.contains(language.name), label: language.name) {
                             toggleSelection(of: language.name)
                         }
+                        .help(language.patterns.joined(separator: ", ")) // Show patterns as tooltip
                     }
                 }
                 .padding(.horizontal)
@@ -63,7 +64,7 @@ struct CheckboxGridView: View {
      Filters the list of languages/frameworks based on the search text.
 
      - Returns: A list of `LanguageExclusion` objects that match the search criteria.
-    */
+     */
     private func filteredLanguages() -> [LanguageExclusion] {
         if searchText.isEmpty {
             return languagesAndExclusions.sorted { $0.name < $1.name }
@@ -76,7 +77,7 @@ struct CheckboxGridView: View {
      Toggles the selection state of a given language/framework.
 
      - Parameter item: The name of the language/framework to toggle.
-    */
+     */
     private func toggleSelection(of item: String) {
         if tempSelectedLanguages.contains(item) {
             tempSelectedLanguages.remove(item)
@@ -87,7 +88,7 @@ struct CheckboxGridView: View {
 
     /**
      Applies the temporary selection to the actual selection and updates the exclusion list.
-    */
+     */
     private func applyChanges() {
         selectedLanguages = tempSelectedLanguages
         updateExclusionList()
@@ -95,7 +96,7 @@ struct CheckboxGridView: View {
 
     /**
      Updates the exclusion list based on the selected languages/frameworks.
-    */
+     */
     private func updateExclusionList() {
         exclusionList.removeAll()
         for language in selectedLanguages {
@@ -113,7 +114,7 @@ struct CheckboxGridView: View {
     - isChecked: A state variable that indicates whether the checkbox is checked.
     - label: The text label displayed next to the checkbox.
     - onToggle: A closure that is called when the checkbox is toggled.
-*/
+ */
 struct CheckboxView: View {
     @State var isChecked: Bool
     let label: String
@@ -144,9 +145,25 @@ struct CheckboxView: View {
 
  - Parameter prefix: The prefix to match against.
  - Returns: A Boolean value indicating whether the string starts with the specified prefix.
-*/
+ */
 extension String {
     func localizedCaseInsensitiveStarts(with prefix: String) -> Bool {
         return self.lowercased().hasPrefix(prefix.lowercased())
+    }
+}
+
+// MARK: - Preview
+struct CheckboxGridView_Previews: PreviewProvider {
+    @State static var selectedLanguages = Set<String>()
+    @State static var exclusionList = Set<String>()
+
+    static var previews: some View {
+        CheckboxGridView(selectedLanguages: $selectedLanguages, exclusionList: $exclusionList)
+            .frame(width: 800, height: 600)
+            .previewLayout(.sizeThatFits)
+
+        CheckboxView(isChecked: false, label: "Swift", onToggle: {})
+            .frame(width: 200)
+            .previewLayout(.sizeThatFits)
     }
 }

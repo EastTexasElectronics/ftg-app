@@ -1,6 +1,11 @@
 import SwiftUI
 
-/// A view that displays the header section, including the Alert, About, and Help buttons.
+/// A view that displays the header section of the application, including buttons for Alert, About, and Help.
+/// - Parameters:
+///   - showingAlertModal: A binding that controls the visibility of the Alert modal.
+///   - showingAbout: A binding that controls the visibility of the About modal.
+///   - showingHelp: A binding that controls the visibility of the Help modal.
+///   - isFullDiskAccessEnabled: A binding that reflects whether Full Disk Access is enabled.
 struct HeaderView: View {
     @Binding var showingAlertModal: Bool
     @Binding var showingAbout: Bool
@@ -49,5 +54,24 @@ struct HeaderView: View {
         }
         .padding(.top, 10)
         .padding(.horizontal)
+    }
+}
+
+// MARK: - Preview
+struct HeaderView_Previews: PreviewProvider {
+    @State static var showingAlertModal = false
+    @State static var showingAbout = false
+    @State static var showingHelp = false
+    @State static var isFullDiskAccessEnabled = true
+
+    static var previews: some View {
+        HeaderView(
+            showingAlertModal: $showingAlertModal,
+            showingAbout: $showingAbout,
+            showingHelp: $showingHelp,
+            isFullDiskAccessEnabled: $isFullDiskAccessEnabled
+        )
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }
