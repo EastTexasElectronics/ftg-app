@@ -14,6 +14,14 @@
 		8C160AF62C665C360066B7AB /* File_Tree_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AF52C665C360066B7AB /* File_Tree_GeneratorTests.swift */; };
 		8C160B002C665C360066B7AB /* File_Tree_GeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AFF2C665C360066B7AB /* File_Tree_GeneratorUITests.swift */; };
 		8C160B022C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160B012C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift */; };
+		8C160B122C6667A60066B7AB /* CheckboxGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160B112C6667A60066B7AB /* CheckboxGridView.swift */; };
+		8C160B132C6667A60066B7AB /* CheckboxGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160B112C6667A60066B7AB /* CheckboxGridView.swift */; };
+		8C160B152C6667CD0066B7AB /* LanguageExclusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160B142C6667CD0066B7AB /* LanguageExclusion.swift */; };
+		8C9178872C6677F700E64522 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178862C6677F700E64522 /* AboutView.swift */; };
+		8C9178892C66780500E64522 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178882C66780500E64522 /* HelpView.swift */; };
+		8C91788A2C66780500E64522 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178882C66780500E64522 /* HelpView.swift */; };
+		8C9178912C66793900E64522 /* FileTreeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178902C66793900E64522 /* FileTreeGenerator.swift */; };
+		8C9178922C66793900E64522 /* FileTreeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178902C66793900E64522 /* FileTreeGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,11 @@
 		8C160AFB2C665C360066B7AB /* File Tree GeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "File Tree GeneratorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C160AFF2C665C360066B7AB /* File_Tree_GeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_Tree_GeneratorUITests.swift; sourceTree = "<group>"; };
 		8C160B012C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_Tree_GeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8C160B112C6667A60066B7AB /* CheckboxGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxGridView.swift; sourceTree = "<group>"; };
+		8C160B142C6667CD0066B7AB /* LanguageExclusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageExclusion.swift; sourceTree = "<group>"; };
+		8C9178862C6677F700E64522 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		8C9178882C66780500E64522 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		8C9178902C66793900E64522 /* FileTreeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTreeGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				8C160AE32C665C350066B7AB /* File_Tree_GeneratorApp.swift */,
-				8C160AE52C665C350066B7AB /* ContentView.swift */,
+				8C91788C2C6678F900E64522 /* Functions */,
+				8C91788B2C66781E00E64522 /* Views */,
 				8C160AE72C665C360066B7AB /* Assets.xcassets */,
 				8C160AEC2C665C360066B7AB /* File_Tree_Generator.entitlements */,
 				8C160AE92C665C360066B7AB /* Preview Content */,
@@ -127,6 +141,26 @@
 				8C160B012C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift */,
 			);
 			path = "File Tree GeneratorUITests";
+			sourceTree = "<group>";
+		};
+		8C91788B2C66781E00E64522 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C9178862C6677F700E64522 /* AboutView.swift */,
+				8C160AE52C665C350066B7AB /* ContentView.swift */,
+				8C160B112C6667A60066B7AB /* CheckboxGridView.swift */,
+				8C9178882C66780500E64522 /* HelpView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8C91788C2C6678F900E64522 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				8C160B142C6667CD0066B7AB /* LanguageExclusion.swift */,
+				8C9178902C66793900E64522 /* FileTreeGenerator.swift */,
+			);
+			path = Functions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C160B152C6667CD0066B7AB /* LanguageExclusion.swift in Sources */,
+				8C9178892C66780500E64522 /* HelpView.swift in Sources */,
+				8C9178912C66793900E64522 /* FileTreeGenerator.swift in Sources */,
 				8C160AE62C665C350066B7AB /* ContentView.swift in Sources */,
 				8C160AE42C665C350066B7AB /* File_Tree_GeneratorApp.swift in Sources */,
+				8C160B122C6667A60066B7AB /* CheckboxGridView.swift in Sources */,
+				8C9178872C6677F700E64522 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C160AF62C665C360066B7AB /* File_Tree_GeneratorTests.swift in Sources */,
+				8C9178922C66793900E64522 /* FileTreeGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +317,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C160B022C665C360066B7AB /* File_Tree_GeneratorUITestsLaunchTests.swift in Sources */,
+				8C91788A2C66780500E64522 /* HelpView.swift in Sources */,
 				8C160B002C665C360066B7AB /* File_Tree_GeneratorUITests.swift in Sources */,
+				8C160B132C6667A60066B7AB /* CheckboxGridView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "File Tree Generator/File_Tree_Generator.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -448,6 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "File Tree Generator/File_Tree_Generator.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
