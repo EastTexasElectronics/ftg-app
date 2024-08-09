@@ -1,108 +1,111 @@
 import SwiftUI
 
+// A view that provides information about the app
 struct AboutView: View {
-    @State private var updateAvailable: Bool = false
+    @Binding var isPresented: Bool
+    var latestVersion: String? = nil
+    private let appStoreURL = "https://apps.apple.com/app/id6581479697"
 
     var body: some View {
         VStack {
-            Text("File Tree Generator")
-                .font(.title)
-                .padding(.bottom, 10)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    // Title
+                    Text("About This App")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 10)
+                        .frame(maxWidth: .infinity, alignment: .center)
 
-            if updateAvailable {
-                Text("New version available!")
-                    .foregroundColor(.red)
-                    .padding(.bottom, 5)
+                    // Update message
+                    if latestVersion != nil {
+                        Text("An update is available. Please visit the App Store to download the latest version.")
+                            .foregroundColor(.red)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
+
+                    // App version
+                    AboutSection(title: "App Version:", description: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown")
+                    
+                    // Latest version
+                    if let latestVersion = latestVersion {
+                        AboutSection(title: "Latest Version:", description: latestVersion)
+                    }
+
+                    // GitHub link
+                    AboutSection(title: "Website:", description: "Visit our website for more information.", link: "https://roberthavelaar.dev/S2L")
+                    
+                    // Contact email link
+                    AboutSection(title: "Contact:", description: "Contact us at Contact@EastTexasElectronics.com", link: "mailto:Contact@EastTexasElectronics.com")
+                }
+                .padding()
             }
 
-            Text("Version 1.0.0")
-                .font(.subheadline)
-                .padding(.bottom, 20)
-
-            Text("This application helps you generate a Markdown file tree of a selected directory, allowing you to exclude files and folders based on programming languages and frameworks.")
-                .padding()
-                .multilineTextAlignment(.center)
-
-            Spacer()
-
-            // Website Link
-            Link("Visit Website", destination: URL(string: "https://roberthavelaar.dev/file-tree-generator-app")!)
-                .padding(.bottom, 10)
-
-            // Buy Me a Coffee Link
-            Link("Buy Me a Coffee", destination: URL(string: "https://www.buymeacoffee.com/roberthavelaar")!)
-                .padding(.bottom, 10)
-
-            // GitHub Link
-            Link("View on GitHub", destination: URL(string: "https://github.com/roberthavelaar/file-tree-generator")!)
-                .padding(.bottom, 10)
-
-            // Update or Leave a Review Button
-            if updateAvailable {
-                Button("Update Now") {
-                    if let url = URL(string: "https://apps.apple.com/app/file-tree-generator/id6621270239") {
+            HStack {
+                // Store button
+                Button(action: {
+                    if let url = URL(string: appStoreURL) {
                         NSWorkspace.shared.open(url)
                     }
+                }) {
+                    Text(latestVersion != nil ? "Update Now" : "Leave a Review")
+                        .padding(.horizontal)
+                        .cornerRadius(20)
+                        .shadow(radius: 20)
+                        .accessibilityLabel(latestVersion != nil ? "Update to the latest version" : "Leave a review on the App Store")
                 }
-                .padding(.bottom, 20)
-            } else {
-                Link("Leave a Review", destination: URL(string: "https://apps.apple.com/app/file-tree-generator/id6621270239?action=write-review")!)
-                    .padding(.bottom, 20)
-            }
+                .buttonStyle(DefaultButtonStyle())
+                .padding()
 
-            // Dynamic Year
-            Text("© \(Calendar.current.component(.year, from: Date())) Robert Havelaar. All rights reserved.")
-                .font(.footnote)
-                .padding(.bottom, 20)
-
-            // Close Button
-            Button("Close") {
-                NSApplication.shared.keyWindow?.close()
+                Spacer()
+                
+                // Close button
+                Button("Close") {
+                    isPresented = false
+                }
+                .buttonStyle(DefaultButtonStyle())
+                .padding()
+                .accessibilityIdentifier("CloseButton")
             }
-            .padding(.bottom, 10)
+            .padding(.horizontal)
         }
-        .frame(maxWidth: 400, maxHeight: 400)
-        .padding()
-        .onAppear {
-            checkForUpdate()
-        }
+        .cornerRadius(20)
+        .shadow(radius: 20)
+    }
+}
+
+struct AboutSection: View {
+    let title: String
+    let description: String
+    let link: String?
+
+    init(title: String, description: String, link: String? = nil) {
+        self.title = title
+        self.description = description
+        self.link = link
     }
 
-    private func checkForUpdate() {
-        guard let url = URL(string: "https://itunes.apple.com/lookup?id=6621270239") else {
-            return
-        }
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Failed to fetch App Store data.")
-                return
-            }
-
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let results = json["results"] as? [[String: Any]],
-                   let appStoreVersion = results.first?["version"] as? String {
-
-                    let currentVersion = "1.0.0" // Replace this with your app's current version
-
-                    DispatchQueue.main.async {
-                        if appStoreVersion != currentVersion {
-                            self.updateAvailable = true
-                        }
-                    }
-                }
-            } catch {
-                print("Failed to parse JSON: \(error.localizedDescription)")
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(title)
+                .fontWeight(.semibold)
+            if let link = link, let url = URL(string: link) {
+                Link(description, destination: url)
+                    .foregroundColor(.blue)
+                    .accessibilityHint("Opens in your default browser")
+            } else {
+                Text(description)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
-
-        task.resume()
     }
 }
 
 struct AboutView_Previews: PreviewProvider {
+    @State static var isPresented = true
+
     static var previews: some View {
-        AboutView()
+        AboutView(isPresented: $isPresented, latestVersion: "1.0.1")
+        AboutView(isPresented: $isPresented, latestVersion: nil)
     }
 }

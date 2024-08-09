@@ -9,9 +9,7 @@ struct HeaderView: View {
 
     var body: some View {
         HStack {
-            Spacer()
-
-            // Alert Button
+            // Alert Button on the left
             Button(action: {
                 showingAlertModal.toggle()
             }) {
@@ -29,13 +27,15 @@ struct HeaderView: View {
                 AlertModalView(isFullDiskAccessEnabled: $isFullDiskAccessEnabled, showingAlertModal: $showingAlertModal)
             }
 
+            Spacer()  // Pushes the "About" and "Help" buttons to the right
+
             // About Button
             Button(action: { showingAbout.toggle() }) {
                 Text("About")
                     .padding(.horizontal)
             }
             .sheet(isPresented: $showingAbout) {
-                AboutView()
+                AboutView(isPresented: $showingAbout)
             }
 
             // Help Button

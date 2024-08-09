@@ -94,6 +94,7 @@
 		8C9178B12C66A17800E64522 /* FileFormatDropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFormatDropdownView.swift; sourceTree = "<group>"; };
 		8C9178B42C66A18A00E64522 /* AlertModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModalView.swift; sourceTree = "<group>"; };
 		8C9178B72C66A1AF00E64522 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
+		8C9178BB2C66B02600E64522 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +125,7 @@
 		8C160AD72C665C350066B7AB = {
 			isa = PBXGroup;
 			children = (
+				8C9178BB2C66B02600E64522 /* README.md */,
 				8C160AE22C665C350066B7AB /* File Tree Generator */,
 				8C160AF42C665C360066B7AB /* File Tree GeneratorTests */,
 				8C160AFE2C665C360066B7AB /* File Tree GeneratorUITests */,
