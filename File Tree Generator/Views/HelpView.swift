@@ -70,7 +70,7 @@ struct HelpView: View {
             HStack {
                 // Visit Help Page Button
                 Button("Visit Help Page") {
-                    if let url = URL(string: "https://roberthavelaar.com/file-tree-generator-app#help") {
+                    if let url = URL(string: "https://www.roberthavelaar.dev/file-tree-generator-app#help") {
                         NSWorkspace.shared.open(url)
                     }
                 }

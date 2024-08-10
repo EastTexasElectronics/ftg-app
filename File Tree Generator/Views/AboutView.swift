@@ -39,7 +39,7 @@ struct AboutView: View {
                     }
 
                     // Website link
-                    AboutSection(title: "Website:", description: "Visit our website for more information.", link: "https://roberthavelaar.dev/S2L")
+                    AboutSection(title: "Website:", description: "Visit our website for more information.", link: "https://www.roberthavelaar.dev/file-tree-generator-app")
                     
                     // Contact email link
                     AboutSection(title: "Contact:", description: "Contact us at Contact@EastTexasElectronics.com", link: "mailto:Contact@EastTexasElectronics.com")
