@@ -22,7 +22,7 @@ struct OptionsView: View {
                 LanguageSelectionView(isShowingLanguageSelector: $isShowingLanguageSelector, selectedLanguages: $selectedLanguages, exclusionList: $exclusionList)
                     .padding(.horizontal)
 
-                FileFormatDropdownView(selectedFileFormat: $selectedFileFormat)
+                ToggleFileFormatView(selectedFileFormat: $selectedFileFormat)
                     .padding(.trailing, 20)
             }
             

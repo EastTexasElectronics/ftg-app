@@ -1,22 +1,20 @@
 import SwiftUI
 
-/// A view that displays an alert modal informing the user about Full Disk Access requirements.
+/// A view that displays an alert modal informing the user about permission issues.
 /// - Parameters:
-///   - isFullDiskAccessEnabled: A binding that reflects whether Full Disk Access is enabled.
 ///   - showingAlertModal: A binding that controls the visibility of the alert modal.
 struct AlertModalView: View {
-    @Binding var isFullDiskAccessEnabled: Bool  // Binding to track if Full Disk Access is enabled
     @Binding var showingAlertModal: Bool  // Binding to control the visibility of the modal
 
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
-            // Warning message about Full Disk Access
-            Text("Manual input fields may not function properly because Full Disk Access is not enabled. Please enable Full Disk Access in System Preferences.")
+            // Warning message about permission issues
+            Text("Manual input fields may not function properly because the application does not have the necessary permissions. Please enable the required permissions in System Preferences.")
                 .foregroundColor(.red)
                 .multilineTextAlignment(.center)
                 .padding()
             
-            // Button to open Full Disk Access settings
+            // Button to open the appropriate settings in System Preferences
             Button("Open Full Disk Access Settings") {
                 openFullDiskAccessSettings()
             }
@@ -46,10 +44,9 @@ struct AlertModalView: View {
 
 // MARK: - Preview
 struct AlertModalView_Previews: PreviewProvider {
-    @State static var isFullDiskAccessEnabled = false
     @State static var showingAlertModal = true
 
     static var previews: some View {
-        AlertModalView(isFullDiskAccessEnabled: $isFullDiskAccessEnabled, showingAlertModal: $showingAlertModal)
+        AlertModalView(showingAlertModal: $showingAlertModal)
     }
 }
