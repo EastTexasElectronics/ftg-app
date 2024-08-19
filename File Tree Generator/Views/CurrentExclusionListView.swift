@@ -35,18 +35,21 @@ struct CurrentExclusionListView: View {
                             .help("Remove this exclusion.")
                         }
                         .padding(8)
-                        .background(Color.gray.opacity(0.15))
                         .cornerRadius(6)
                     }
                 }
                 .padding(.horizontal, 5)
             }
             .frame(maxHeight: 300) // Increased height to make the view taller
-            .background(Color.clear)
+             // Lighter background color for the entire grid container
+            .cornerRadius(8)
         }
+        
         .padding(.horizontal)
     }
+    
 }
+
 
 // MARK: - Preview
 struct CurrentExclusionListView_Previews: PreviewProvider {

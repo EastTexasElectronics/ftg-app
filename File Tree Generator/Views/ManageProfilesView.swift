@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ManageProfilesView: View {
     @Binding var profiles: [String: SettingsProfile]
-    @Binding var selectedProfile: String
+    @Binding var selectedProfile: String?
     var loadProfile: (String) -> Void
     var removeProfile: (String) -> Void
     var renameProfile: (String, String) -> Void

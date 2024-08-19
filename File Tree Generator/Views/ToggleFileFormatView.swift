@@ -7,11 +7,12 @@ struct ToggleFileFormatView: View {
     var body: some View {
         HStack {
             Picker("", selection: $selectedFileFormat) {
-                Text("Markdown.md").tag("Markdown.md")
-                Text("Text.txt").tag("Text.txt")
+                Text("Markdown").tag("Markdown")
+                Text("Pain Text").tag("Pain Text")
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(maxWidth: 200)
+            
         }
         .help("Select the desired output file format.")
     }

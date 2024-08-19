@@ -1,6 +1,5 @@
 import SwiftUI
 
-/// A view that provides help and instructions on how to use the File Tree Generator application.
 struct HelpView: View {
     @Environment(\.presentationMode) var presentationMode
 
@@ -14,97 +13,105 @@ struct HelpView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
 
             // Instructions Section
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text("How to use this application:")
-                    .font(.headline)
-                    .padding(.bottom, 10)
+                    .font(.title2)
+                    .padding(.bottom, 2)
 
-                Text("1. Select an input directory using the 'Select Directory' button.")
-                Text("2. Choose an output file location. By default, the file will be saved to the input directory with the name 'file-tree-HH-MM-SS.md'.")
-                Text("3. Use the 'Select Languages/Frameworks' button to exclude specific patterns.")
-                Text("4. You can manually add custom exclusion patterns as well by entering them in the 'Exclusion Patterns' text field.")
-                Text("5. Click 'Generate File Tree' to create the file tree.")
+                Group {
+                    Text("1. Select an input directory using the 'Select Directory' button.")
+                    Text("2. (Optional) Choose an output file location. By default, the file will be saved to the input directory.")
+                    Text("3. (Optional) Use the 'Add Default Exclusions' button to exclude specific preset patterns.")
+                    Text("4. (Optional) You can manually add custom exclusion patterns by entering them in the 'Exclusion Patterns' text field using a comma-separated list of values. For example: pattern1, pattern2, .pattern3.")
+                    Text("5. (Optional) Select the output file type: Markdown (default) or Text (.txt).")
+                    Text("6. Click 'Generate File Tree' to create the file tree.")
+                    Text("7. Find your file tree in the selected output directory, which by default is the same location as the input directory.")
+                }
+                .font(.title3)
+                .padding(.bottom, 8)
 
-                // New Section for CLI instructions
-                Text("Using the Command Line Interface (CLI):")
-                    .font(.headline)
-                    .padding(.top, 20)
-                    .padding(.bottom, 10)
+                Text("Profile Management:")
+                    .font(.title2)
+                    .padding(.bottom, 2)
 
-                Text("You can also generate a file tree using the `ftg` command from the terminal.")
-                Text("To use the CLI tool, simply open your terminal and type:")
-                Text("ftg -d <input_directory> -o <output_file> -e <exclusion_patterns> -f <format>")
-                    .font(.system(.body, design: .monospaced))
-                    .padding(.vertical, 5)
-                    .contextMenu {
-                        Button(action: {
-                            NSPasteboard.general.clearContents()
-                            NSPasteboard.general.setString("ftg -d <input_directory> -o <output_file> -e <exclusion_patterns> -f <format>", forType: .string)
-                        }) {
-                            Text("Copy to Clipboard")
-                            Image(systemName: "doc.on.doc")
-                        }
-                    }
-
-                Text("For example, to generate a Markdown file tree of your `~/projects` directory, excluding `node_modules` and `.git`, you can use:")
-                Text("ftg -d ~/projects -o tree.md -e node_modules,.git -f md")
-                    .font(.system(.body, design: .monospaced))
-                    .padding(.vertical, 5)
-                    .contextMenu {
-                        Button(action: {
-                            NSPasteboard.general.clearContents()
-                            NSPasteboard.general.setString("ftg -d ~/projects -o tree.md -e node_modules,.git -f md", forType: .string)
-                        }) {
-                            Text("Copy to Clipboard")
-                            Image(systemName: "doc.on.doc")
-                        }
-                    }
+                Group {
+                    Text("Save Settings: Saves your current exclusion list and file type to a named profile for commonly used project types.")
+                    Text("Manage Profiles: Allows you to rename or remove profiles.")
+                    Text("Profile: Select the profile you would like to use.")
+                }
+                .font(.title3)
             }
             .padding(.horizontal, 40)
             .padding(.bottom, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .lineLimit(nil) // Ensure word wrapping instead of truncation
 
-            Spacer()
+            Spacer(minLength: 10)
 
             // Bottom Button Section
             HStack {
-                // Visit Help Page Button
-                Button("Visit Help Page") {
+                Button(action: {
                     if let url = URL(string: "https://www.roberthavelaar.dev/file-tree-generator-app#help") {
                         NSWorkspace.shared.open(url)
                     }
+                }) {
+                    Text("Visit Help Page")
+                        .font(.headline)
+                        .padding(.horizontal)
+                        .padding(.vertical, 6)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.blue))
+                        .foregroundColor(.white)
+                        .accessibilityLabel("Visit the help page for more information")
                 }
-                .buttonStyle(DefaultButtonStyle())
-                .padding(.leading, 40)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+                .padding(.leading)
 
                 Spacer()
 
-                // Email Support Button
-                Button("Email Support") {
-                    if let url = URL(string: "mailto:contact@eastetexaselectronics.com") {
+                Button(action: {
+                    if let url = URL(string: "mailto:RMHavelaar@gmail.com") {
                         NSWorkspace.shared.open(url)
                     }
+                }) {
+                    Text("Email Support")
+                        .font(.headline)
+                        .padding(.horizontal)
+                        .padding(.vertical, 6)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.5)))
+                        .foregroundColor(.white)
+                        .accessibilityLabel("Email support for help")
                 }
-                .buttonStyle(DefaultButtonStyle())
-                .padding(.bottom, 10)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+                .padding(.horizontal)
 
                 Spacer()
-
-                // Close Button
+                
                 Button("Close") {
-                    presentationMode.wrappedValue.dismiss() // Use presentationMode to dismiss the view
+                    presentationMode.wrappedValue.dismiss()
                 }
-                .buttonStyle(DefaultButtonStyle())
-                .padding(.trailing, 40)
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.vertical, 6)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+                .padding(.trailing)
+                .accessibilityIdentifier("CloseButton")
             }
-            .padding(.vertical, 20)
+            .padding(.horizontal)
+            .padding(.bottom, 15)
         }
-        .padding()
-        .frame(minWidth: 450, minHeight: 400)
+        .frame(width: 1000, height: 500)
+        .cornerRadius(20)
+        .shadow(radius: 20)
     }
 }
 
 // MARK: - Preview
+
 struct HelpView_Previews: PreviewProvider {
     static var previews: some View {
         HelpView()

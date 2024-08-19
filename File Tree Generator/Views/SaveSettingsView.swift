@@ -5,7 +5,7 @@ import SwiftUI
 /// to ensure a profile name is entered before saving.
 struct SaveSettingsView: View {
     @Binding var isPresented: Bool  // Controls whether the view is presented
-    @Binding var profileName: String  // The name of the profile to save
+    @Binding var profileName: String?  // The name of the profile to save
     @Binding var showError: Bool  // Indicates whether an error should be shown
     var onSave: () -> Void  // Closure to execute when the save button is pressed
 
@@ -17,9 +17,14 @@ struct SaveSettingsView: View {
                 .padding(.bottom, 10)
 
             // TextField for entering the profile name
-            TextField("Enter profile name", text: $profileName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+            TextField("Enter profile name", text: Binding(
+                get: { profileName ?? "" },
+                set: { newValue in
+                    profileName = newValue.isEmpty ? nil : newValue
+                }
+            ))
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
 
             // Error message displayed if no profile name is entered
             if showError {
@@ -42,8 +47,10 @@ struct SaveSettingsView: View {
                 // Save button to save the profile and close the view if successful
                 Button("Save") {
                     onSave()
-                    if !profileName.isEmpty {
+                    if let profileName = profileName, !profileName.isEmpty {
                         isPresented = false
+                    } else {
+                        showError = true
                     }
                 }
                 .padding()
@@ -57,7 +64,7 @@ struct SaveSettingsView: View {
 // MARK: - Preview
 struct SaveSettingsView_Previews: PreviewProvider {
     @State static var isPresented = true
-    @State static var profileName = ""
+    @State static var profileName: String? = nil
     @State static var showError = false
 
     static var previews: some View {

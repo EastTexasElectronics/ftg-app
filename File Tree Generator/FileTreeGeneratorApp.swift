@@ -5,8 +5,10 @@ import WebKit
 struct FileTreeGeneratorApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    @State private var selectedProfile = ""
-    @State private var profiles: [String: SettingsProfile] = [:]
+    @State private var selectedProfile: String? = "Default"
+    @State private var profiles: [String: SettingsProfile] = [
+        "Default": SettingsProfile(exclusionList: [], selectedFileFormat: "Markdown (.md)")
+    ]
     @State private var showingSaveSettings = false
     @State private var showingManageProfiles = false
 
@@ -16,6 +18,9 @@ struct FileTreeGeneratorApp: App {
                 .onAppear {
                     appDelegate.loadProfiles { profiles in
                         self.profiles = profiles
+                        if self.selectedProfile == nil || !profiles.keys.contains(self.selectedProfile!) {
+                            self.selectedProfile = profiles.keys.first
+                        }
                     }
                 }
                 .sheet(isPresented: $showingManageProfiles) {
@@ -24,8 +29,8 @@ struct FileTreeGeneratorApp: App {
                     }
                 }
                 .sheet(isPresented: $showingSaveSettings) {
-                    SaveSettingsView(isPresented: $showingSaveSettings, profileName: $selectedProfile, showError: .constant(false)) {
-                        appDelegate.saveProfile(named: selectedProfile)
+                    SaveSettingsView(isPresented: $showingSaveSettings, profileName: .constant(selectedProfile ?? ""), showError: .constant(false)) {
+                        appDelegate.saveProfile(named: selectedProfile ?? "")
                     }
                 }
         }
@@ -47,11 +52,11 @@ struct FileTreeGeneratorApp: App {
                 Menu("Profile") {
                     Picker("Select Profile", selection: $selectedProfile) {
                         ForEach(Array(profiles.keys), id: \.self) { profile in
-                            Text(profile).tag(profile)
+                            Text(profile).tag(profile as String?)
                         }
                     }
                     .onChange(of: selectedProfile, perform: { value in
-                        appDelegate.loadProfile(named: value)
+                        appDelegate.loadProfile(named: value ?? "")
                     })
                     
                     Button("Manage Profiles") {
@@ -66,6 +71,7 @@ struct FileTreeGeneratorApp: App {
         }
     }
 }
+
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var helpWindow: NSWindow?

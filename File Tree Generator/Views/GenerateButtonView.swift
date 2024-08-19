@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-struct GenerateButton: View {
+struct GenerateButtonView: View {
     @Binding var inputDirectory: String
     @Binding var alertMessage: String
     @Binding var showAlert: Bool
@@ -16,6 +16,9 @@ struct GenerateButton: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 5)
                 .frame(height: 50)
+                .accessibilityLabel("Select a Directory")
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
         }
         .disabled(inputDirectory.isEmpty)
         .help("Click to generate the file tree based on the selected directory and exclusion patterns.")

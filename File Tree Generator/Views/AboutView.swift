@@ -1,95 +1,115 @@
 import SwiftUI
 
-/// A view that provides information about the File Tree Generator app,
-/// including the current version, latest version, and links to relevant resources.
 struct AboutView: View {
-    /// A binding to control the presentation of the view.
     @Binding var isPresented: Bool
     
-    /// The latest version available on the App Store, if any.
     var latestVersion: String? = nil
-    
-    /// The URL to the App Store page for the app.
-    private let appStoreURL = "https://apps.apple.com/app/id6581479697"
+
+    private let appStoreURL = "https://apps.apple.com/us/app/file-tree-generator/id6621270239?mt=12"
+    private let buyMeACoffeeURL = "https://buymeacoffee.com/rmhavelaar"
+    private let mitLicenseURL = "https://opensource.org/licenses/MIT"
 
     var body: some View {
         VStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    // Title
-                    Text("About This App")
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("About File Tree Generator")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
                         .frame(maxWidth: .infinity, alignment: .center)
 
-                    // Update message, shown if a new version is available
                     if latestVersion != nil {
                         Text("An update is available. Please visit the App Store to download the latest version.")
                             .foregroundColor(.red)
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
 
-                    // Current app version
-                    AboutSection(title: "App Version:", description: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown")
+                    AboutSection(title: "App Version:", description: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown", link: appStoreURL)
                     
-                    // Latest version if available
                     if let latestVersion = latestVersion {
-                        AboutSection(title: "Latest Version:", description: latestVersion)
+                        AboutSection(title: "Latest Version:", description: latestVersion, link: appStoreURL)
                     }
 
-                    // Website link
-                    AboutSection(title: "Website:", description: "Visit our website for more information.", link: "https://www.roberthavelaar.dev/file-tree-generator-app")
+                    AboutSection(title: "Website:", description: "roberthavelaar.dev", link: "https://www.roberthavelaar.dev/file-tree-generator-app")
                     
-                    // Contact email link
-                    AboutSection(title: "Contact:", description: "Contact us at Contact@EastTexasElectronics.com", link: "mailto:Contact@EastTexasElectronics.com")
+                    AboutSection(title: "Contact:", description: "RMHavelaar@Gmail.com", link: "mailto:RMHavelaar@Gmail.com")
+                    
+                    AboutSection(title: "Buy Me a Coffee:", description: "buymeacoffee.com/rmhavelaar", link: buyMeACoffeeURL)
+                    
+                    AboutSection(title: "App License:", description: "MIT", link: mitLicenseURL)
+                    
+                    AboutSection(title: "Privacy Policy:", description: "View Privacy Policy", link: "https://www.roberthavelaar.dev/file-tree-generator-app#privacy-policy")
+                    
+                    AboutSection(title: "Version History:", description: "View Changelog", link: "https://www.roberthavelaar.dev/file-tree-generator-app#changelog")
                 }
                 .padding()
             }
 
             HStack {
-                // Button to update the app or leave a review on the App Store
                 Button(action: {
                     if let url = URL(string: appStoreURL) {
                         NSWorkspace.shared.open(url)
                     }
                 }) {
                     Text(latestVersion != nil ? "Update Now" : "Leave a Review")
+                        .font(.headline)
                         .padding(.horizontal)
-                        .cornerRadius(20)
-                        .shadow(radius: 20)
+                        .padding(.vertical, 6)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.blue))
+                        .foregroundColor(.white)
                         .accessibilityLabel(latestVersion != nil ? "Update to the latest version" : "Leave a review on the App Store")
                 }
-                .buttonStyle(DefaultButtonStyle())
-                .padding()
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+                .padding(.leading)
+
+                Spacer()
+
+                Button(action: {
+                    if let url = URL(string: buyMeACoffeeURL) {
+                        NSWorkspace.shared.open(url)
+                    }
+                }) {
+                    Image(systemName: "cup.and.saucer.fill")
+                        .font(.headline)
+                        .padding(.horizontal)
+                        .padding(.vertical, 6)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.5)))
+                        .foregroundColor(.white)
+                        .accessibilityLabel("Support by buying a coffee")
+                }
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+                .padding(.horizontal)
 
                 Spacer()
                 
-                // Close button to dismiss the About view
                 Button("Close") {
                     isPresented = false
                 }
-                .buttonStyle(DefaultButtonStyle())
-                .padding()
+                .font(.headline)
+                .padding(.horizontal)
+                .padding(.vertical, 6)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+                .padding(.trailing)
                 .accessibilityIdentifier("CloseButton")
             }
             .padding(.horizontal)
+            .padding(.bottom, 15)
         }
+        .frame(width: 400, height: 420)
         .cornerRadius(20)
         .shadow(radius: 20)
     }
 }
 
-/// A view that displays a section of information in the AboutView, which may include a title,
-/// description, and optionally a link.
 struct AboutSection: View {
-    /// The title of the section.
     let title: String
-    
-    /// The description or content of the section.
     let description: String
-    
-    /// An optional URL to be displayed as a link.
     let link: String?
 
     init(title: String, description: String, link: String? = nil) {
@@ -99,29 +119,33 @@ struct AboutSection: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        HStack(alignment: .top, spacing: 8) {
             Text(title)
                 .fontWeight(.semibold)
+                .frame(width: 120, alignment: .leading)
             
-            // Display a link if provided, otherwise just the description text
             if let link = link, let url = URL(string: link) {
                 Link(description, destination: url)
                     .foregroundColor(.blue)
                     .accessibilityHint("Opens in your default browser")
+                    .buttonStyle(PlainButtonStyle())
+                    .focusable(false)
             } else {
                 Text(description)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
+        .padding(.vertical, 4)
     }
 }
 
 // MARK: - Preview
+
 struct AboutView_Previews: PreviewProvider {
     @State static var isPresented = true
 
     static var previews: some View {
-        AboutView(isPresented: $isPresented, latestVersion: "1.0.1")
+        AboutView(isPresented: $isPresented, latestVersion: "1.1")
         AboutView(isPresented: $isPresented, latestVersion: nil)
     }
 }

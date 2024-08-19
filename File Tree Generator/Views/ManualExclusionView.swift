@@ -11,14 +11,13 @@ struct ManualExclusionView: View {
     @Binding var exclusionList: Set<String>
 
     var body: some View {
-        HStack {
-            // Text field for entering custom exclusion patterns
-            TextField("Manually add a custom exclusion pattern. Comma Seperated ex(pattern,.pattern1,pattern2).", text: $manualExclusion, onCommit: {
+        HStack(spacing: 0) {
+            TextField("Manually add a custom exclusion pattern. Comma Separated ex(pattern,.pattern1,pattern2).", text: $manualExclusion, onCommit: {
                 addManualExclusion()
             })
             .textFieldStyle(RoundedBorderTextFieldStyle())
-            .help("Please ensure items are comma seperated with no spaces.")
-            .padding(.trailing, 10)
+            .help("Please ensure items are comma separated.")
+            .padding(.vertical, 2)
 
             // Button to add the entered exclusion pattern to the list
             Button("Add") {
@@ -28,11 +27,20 @@ struct ManualExclusionView: View {
         }
     }
 
-    /// Adds the entered exclusion pattern to the exclusion list.
+    /// Adds the entered exclusion pattern(s) to the exclusion list.
     /// If the text field is empty, the function does nothing.
     private func addManualExclusion() {
         guard !manualExclusion.isEmpty else { return }
-        exclusionList.insert(manualExclusion)
+        
+        // Split the input by commas and trim whitespace from each part
+        let patterns = manualExclusion.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        
+        // Insert each pattern into the exclusion list
+        for pattern in patterns {
+            exclusionList.insert(pattern)
+        }
+        
+        // Clear the text field after adding the exclusions
         manualExclusion = ""
     }
 }

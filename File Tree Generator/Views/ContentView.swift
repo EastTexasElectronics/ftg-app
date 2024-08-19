@@ -1,12 +1,11 @@
 import SwiftUI
 
-/// The main content view for the File Tree Generator application.
 struct ContentView: View {
+
     // MARK: - Properties
 
-    @Binding var selectedProfile: String
+    @Binding var selectedProfile: String?
     @Binding var profiles: [String: SettingsProfile]
-
     @State private var showingSaveSettings = false
     @State private var showingManageProfiles = false
     @State private var inputDirectory: String = ""
@@ -17,17 +16,23 @@ struct ContentView: View {
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var showingAlertModal = false
-    @State private var selectedFileFormat: String = "Markdown.md"
+    @State private var selectedFileFormat: String = "Markdown"
     @State private var profileName: String = ""
     @State private var showError = false
+    @State private var showingHelpView = false
+    @State private var showingAboutView = false
+
+    // New State for showing CheckboxGridView
+    @State private var showingExclusionView = false
 
     // MARK: - Body
 
     var body: some View {
         VStack(spacing: 20) {
+            profileSelectionSection
             buttonGroup
-            generateButtonSection
             manualExclusionSection
+            generateButtonSection
             exclusionListView
             Spacer()
         }
@@ -39,12 +44,33 @@ struct ContentView: View {
         .sheet(isPresented: $showingAlertModal) {
             AlertModalView(showingAlertModal: $showingAlertModal)
         }
+        .sheet(isPresented: $showingHelpView) {
+            HelpView()
+        }
+        .sheet(isPresented: $showingAboutView) {
+            AboutView(isPresented: $showingAboutView)
+        }
+        .sheet(isPresented: $showingExclusionView) {
+            CheckboxGridView(selectedLanguages: $selectedLanguages, exclusionList: $exclusionList)
+        }
+    }
+
+    // MARK: - Profile Selection Section
+
+    private var profileSelectionSection: some View {
+        ProfileSelectionView(
+            selectedProfile: $selectedProfile,
+            profiles: profiles,
+            loadProfile: loadProfile
+        )
+        .padding(.top, 8)
+        .padding(.bottom, 4)
     }
 
     // MARK: - Button Group
 
     private var buttonGroup: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
             VStack(spacing: 10) {
                 DirectoryField(
                     title: "Input Directory:",
@@ -64,16 +90,23 @@ struct ContentView: View {
             Spacer()
 
             VStack(spacing: 10) {
-                Button("Add Default Exclusions") {
-                    addDefaultExclusions()
+                Button("Add Exclusions") {
+                    showingExclusionView = true  // Show the CheckboxGridView
                 }
-                .help("Click to add default exclusions based on selected languages.")
-                .accessibilityLabel("Add default exclusions based on selected languages")
+                .padding(.horizontal, 10)
+                .padding(.vertical, 2)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
 
                 ToggleFileFormatView(selectedFileFormat: $selectedFileFormat)
+                    .padding(.horizontal, 22)
+                    .frame(maxWidth: .infinity)
                     .help("Select the file format for the output file.")
                     .accessibilityLabel("Select file format for output")
             }
+            .frame(maxWidth: 200)
 
             Spacer()
 
@@ -84,13 +117,19 @@ struct ContentView: View {
                 .sheet(isPresented: $showingSaveSettings) {
                     SaveSettingsView(
                         isPresented: $showingSaveSettings,
-                        profileName: $profileName,
+                        profileName: $selectedProfile,
                         showError: $showError
                     ) {
-                        saveProfile(named: profileName)
+                        saveProfile(named: selectedProfile ?? "")
                     }
                 }
                 .accessibilityLabel("Save current settings to profile")
+                .padding(.horizontal, 15)
+                .padding(.vertical, 2)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
 
                 Button("Manage Profiles") {
                     showingManageProfiles = true
@@ -107,9 +146,13 @@ struct ContentView: View {
                     }
                 }
                 .accessibilityLabel("Manage saved profiles")
+                .padding(.horizontal, 10)
+                .padding(.vertical, 2)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
             }
-
-            Spacer()
         }
         .padding(.horizontal)
     }
@@ -118,40 +161,56 @@ struct ContentView: View {
 
     private var generateButtonSection: some View {
         VStack {
-            GenerateButton(
-                inputDirectory: $inputDirectory,
-                alertMessage: $alertMessage,
-                showAlert: $showAlert,
-                exclusionList: $exclusionList,
-                outputFile: $outputFile,
-                showingAlertModal: $showingAlertModal,
-                selectedFileFormat: selectedFileFormat
-            )
-            .frame(height: 60)
-            .frame(width: 200)
+            HStack(spacing: 20) {
+                Button("Help") {
+                    showingHelpView = true
+                }
+                .accessibilityLabel("Help")
+                .padding(.horizontal)
+                .padding(.vertical, 6)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+
+                GenerateButtonView(
+                    inputDirectory: $inputDirectory,
+                    alertMessage: $alertMessage,
+                    showAlert: $showAlert,
+                    exclusionList: $exclusionList,
+                    outputFile: $outputFile,
+                    showingAlertModal: $showingAlertModal,
+                    selectedFileFormat: selectedFileFormat
+                )
+                .frame(height: 60)
+                .frame(width: 200)
+
+                Button("About") {
+                    showingAboutView = true
+                }
+                .accessibilityLabel("About")
+                .padding(.horizontal)
+                .padding(.vertical, 6)
+                .background(RoundedRectangle(cornerRadius: 4).fill(Color.gray.opacity(0.5)))
+                .foregroundColor(.white)
+                .buttonStyle(PlainButtonStyle())
+                .focusable(false)
+            }
+            .padding(.top, 10)
         }
         .frame(maxWidth: .infinity, alignment: .center)
-        .padding(.top, 10)
     }
 
     // MARK: - Manual Exclusion Section
 
     private var manualExclusionSection: some View {
         VStack {
-            SectionTitleView(title: "Manually Add Exclusions")
-
             HStack {
                 ManualExclusionView(
                     manualExclusion: $manualExclusion,
                     exclusionList: $exclusionList
                 )
                 .padding(.leading)
-
-                Button("Add") {
-                    addManualExclusion()
-                }
-                .padding(.horizontal)
-                .accessibilityLabel("Add manual exclusion")
             }
             .padding(.horizontal)
         }
@@ -175,6 +234,7 @@ struct ContentView: View {
                         }
                         .foregroundColor(.red)
                         .accessibilityLabel("Remove exclusion: \(item)")
+                        .focusable(false)
                     }
                     .padding(8)
                     .background(Color.gray.opacity(0.2))
@@ -186,8 +246,7 @@ struct ContentView: View {
     }
 
     // MARK: - Directory Selection Methods
-
-    /// Opens a panel for the user to select an input directory.
+    
     private func selectDirectory() {
         let panel = NSOpenPanel()
         panel.canChooseDirectories = true
@@ -199,8 +258,7 @@ struct ContentView: View {
             }
         }
     }
-
-    /// Opens a panel for the user to select an output file.
+    
     private func selectOutputFile() {
         let panel = NSSavePanel()
         panel.title = "Select Output File"
@@ -211,10 +269,9 @@ struct ContentView: View {
             }
         }
     }
-
+    
     // MARK: - Exclusion and Profile Management
-
-    /// Adds default exclusion patterns based on the selected languages.
+    
     private func addDefaultExclusions() {
         for language in selectedLanguages {
             if let patterns = languagesAndExclusions.first(where: { $0.name == language })?.patterns {
@@ -222,22 +279,23 @@ struct ContentView: View {
             }
         }
     }
-
-    /// Adds a manual exclusion to the exclusion list.
+    
     private func addManualExclusion() {
         if !manualExclusion.isEmpty {
             exclusionList.insert(manualExclusion)
             manualExclusion = ""
         }
     }
-
+    
     /// Saves the current exclusion list and file format to a named profile.
+    ///
+    /// - Parameter name: The name of the profile to save.
     private func saveProfile(named name: String) {
         guard !name.isEmpty else {
             showError = true
             return
         }
-
+        
         let profile = SettingsProfile(
             exclusionList: exclusionList,
             selectedFileFormat: selectedFileFormat
@@ -248,21 +306,29 @@ struct ContentView: View {
         showError = false
         showingSaveSettings = false
     }
-
+    
     /// Loads a profile by its name.
-    private func loadProfile(named name: String) {
-        guard let profile = profiles[name] else { return }
+    ///
+    /// - Parameter name: The name of the profile to load.
+    private func loadProfile(named name: String?) {
+        guard let name = name, let profile = profiles[name] else { return }
         exclusionList = profile.exclusionList
         selectedFileFormat = profile.selectedFileFormat
     }
-
+    
     /// Removes a profile by its name.
+    ///
+    /// - Parameter name: The name of the profile to remove.
     private func removeProfile(named name: String) {
         profiles.removeValue(forKey: name)
         saveProfilesToUserDefaults()
     }
-
+    
     /// Renames an existing profile.
+    ///
+    /// - Parameters:
+    ///   - oldName: The current name of the profile.
+    ///   - newName: The new name of the profile.
     private func renameProfile(oldName: String, newName: String) {
         guard !newName.isEmpty else { return }
         if let profile = profiles.removeValue(forKey: oldName) {
@@ -270,16 +336,14 @@ struct ContentView: View {
             saveProfilesToUserDefaults()
         }
     }
-
-    /// Saves profiles to UserDefaults.
+    
     private func saveProfilesToUserDefaults() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(profiles) {
             UserDefaults.standard.set(encoded, forKey: "savedProfiles")
         }
     }
-
-    /// Loads profiles from UserDefaults.
+    
     private func loadProfiles() {
         let decoder = JSONDecoder()
         if let savedProfiles = UserDefaults.standard.object(forKey: "savedProfiles") as? Data {
@@ -293,7 +357,7 @@ struct ContentView: View {
 // MARK: - Preview
 
 struct ContentView_Previews: PreviewProvider {
-    @State static var selectedProfile = "Default Profile"
+    @State static var selectedProfile: String? = nil
     @State static var profiles: [String: SettingsProfile] = [
         "Default Profile": SettingsProfile(exclusionList: ["node_modules", "*.log"], selectedFileFormat: "Markdown (.md)")
     ]

@@ -41,3 +41,15 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Xcode](https://developer.apple.com/xcode/)
 
 © 2024 Robert Havelaar. All rights reserved.
+
+
+TODO:
+Remove extra icon in outputview
+Add Sentry analytics
+Add Leave a Rating popup
+Fix Default Exl Button
+Fix Generation
+Fix Alert Modal text is truncating
+Fix menu bar
+Make sure Markdown is visially selected by default
+

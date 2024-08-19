@@ -13,15 +13,18 @@ struct DirectoryField: View {
     var buttonAction: () -> Void
 
     var body: some View {
-        HStack {
-            // Text field for entering directory path
+        HStack(spacing: 1) {
             TextField(title, text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.trailing, 10)
+                .frame(minWidth: 250)
 
-            // Browse button that triggers the provided action
             Button(action: buttonAction) {
                 Text("Browse")
+                    .accessibilityLabel("Select a Directory")
+                    .padding(.vertical, 1)
+                    .foregroundColor(.white)
+                    .buttonStyle(PlainButtonStyle())
+                    .focusable(false)
             }
         }
     }
@@ -33,7 +36,6 @@ struct DirectoryField_Previews: PreviewProvider {
 
     static var previews: some View {
         DirectoryField(title: "Select Directory", text: $text) {
-            // Example action for preview
             print("Browse button tapped")
         }
         .padding()
