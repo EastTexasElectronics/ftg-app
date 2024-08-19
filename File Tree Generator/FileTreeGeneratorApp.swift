@@ -1,5 +1,6 @@
 import SwiftUI
 import WebKit
+import StoreKit
 
 @main
 struct FileTreeGeneratorApp: App {
@@ -143,7 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         profiles.removeValue(forKey: name)
         saveProfilesToUserDefaults()
     }
-    
+
     func renameProfile(oldName: String, newName: String) {
         guard let profile = profiles.removeValue(forKey: oldName) else { return }
         profiles[newName] = profile
@@ -155,5 +156,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let encoded = try? encoder.encode(profiles) {
             UserDefaults.standard.set(encoded, forKey: "savedProfiles")
         }
+    }
+
+    // Add the review request function
+    func requestReview() {
+        print("Attempting to request a review...") // Debugging line
+
+        // On macOS, SKStoreReviewController.requestReview() doesn't require any parameters
+        SKStoreReviewController.requestReview()
+
+        print("Review request function called.") // Debugging line
     }
 }

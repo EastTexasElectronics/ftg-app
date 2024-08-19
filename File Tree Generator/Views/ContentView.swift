@@ -29,7 +29,7 @@ struct ContentView: View {
     // Audio players
     @State private var successAudioPlayer: AVAudioPlayer?
     @State private var failureAudioPlayer: AVAudioPlayer?
-    
+
     // MARK: - Body
 
     var body: some View {
@@ -38,6 +38,7 @@ struct ContentView: View {
             buttonGroup
             manualExclusionSection
             generateButtonSection
+            reviewButtonSection
             exclusionListView
             Spacer()
         }
@@ -63,6 +64,7 @@ struct ContentView: View {
         }
     }
 
+    
     // MARK: - Profile Selection Section
 
     private var profileSelectionSection: some View {
@@ -70,6 +72,7 @@ struct ContentView: View {
             selectedProfile: $selectedProfile,
             profiles: profiles,
             loadProfile: loadProfile
+            
         )
         .padding(.top, 8)
         .padding(.bottom, 4)
@@ -214,6 +217,22 @@ struct ContentView: View {
             .padding(.top, 10)
         }
         .frame(maxWidth: .infinity, alignment: .center)
+    }
+
+    // MARK: - Review Button Section
+    
+    private var reviewButtonSection: some View {
+        Button("Leave a Review") {
+            // Request review using the AppDelegate function
+            if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
+                appDelegate.requestReview()
+            }
+        }
+        .padding()
+        .background(Color.blue)
+        .foregroundColor(.white)
+        .cornerRadius(10)
+        .padding(.top, 20)
     }
 
     // MARK: - Manual Exclusion Section
