@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C14E7E62C7316D70090A0F7 /* Fail_Audio.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */; };
 		8C160AE42C665C350066B7AB /* FileTreeGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AE32C665C350066B7AB /* FileTreeGeneratorApp.swift */; };
 		8C160AE62C665C350066B7AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C160AE52C665C350066B7AB /* ContentView.swift */; };
 		8C160AE82C665C360066B7AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C160AE72C665C360066B7AB /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Fail_Audio.aiff; sourceTree = "<group>"; };
 		8C160AE02C665C350066B7AB /* File Tree Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "File Tree Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C160AE32C665C350066B7AB /* FileTreeGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTreeGeneratorApp.swift; sourceTree = "<group>"; };
 		8C160AE52C665C350066B7AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */,
+				8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			files = (
 				8CA9CFC62C6FD37F00799DB6 /* index.html in Resources */,
 				8CA9CFC82C6FFF2400799DB6 /* Complete_Audio.aiff in Resources */,
+				8C14E7E62C7316D70090A0F7 /* Fail_Audio.aiff in Resources */,
 				8C160AEB2C665C360066B7AB /* Preview Assets.xcassets in Resources */,
 				8C160AE82C665C360066B7AB /* Assets.xcassets in Resources */,
 			);

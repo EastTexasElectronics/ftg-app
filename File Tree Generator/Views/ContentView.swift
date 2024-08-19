@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
 
@@ -25,6 +26,10 @@ struct ContentView: View {
     // New State for showing CheckboxGridView
     @State private var showingExclusionView = false
 
+    // Audio players
+    @State private var successAudioPlayer: AVAudioPlayer?
+    @State private var failureAudioPlayer: AVAudioPlayer?
+    
     // MARK: - Body
 
     var body: some View {
@@ -52,6 +57,9 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingExclusionView) {
             CheckboxGridView(selectedLanguages: $selectedLanguages, exclusionList: $exclusionList)
+        }
+        .onAppear {
+            setupAudioPlayers()
         }
     }
 
@@ -184,6 +192,13 @@ struct ContentView: View {
                 )
                 .frame(height: 60)
                 .frame(width: 200)
+                .onChange(of: showAlert) { newValue in
+                    if newValue {
+                        playFailureSound()
+                    } else {
+                        playSuccessSound()
+                    }
+                }
 
                 Button("About") {
                     showingAboutView = true
@@ -351,6 +366,31 @@ struct ContentView: View {
                 profiles = loadedProfiles
             }
         }
+    }
+
+    // MARK: - Audio Setup
+
+    private func setupAudioPlayers() {
+        guard let successURL = Bundle.main.url(forResource: "Complete_Audio", withExtension: "mp3"),
+              let failureURL = Bundle.main.url(forResource: "Fail_Audio", withExtension: "mp3") else {
+            print("Audio files not found")
+            return
+        }
+
+        do {
+            successAudioPlayer = try AVAudioPlayer(contentsOf: successURL)
+            failureAudioPlayer = try AVAudioPlayer(contentsOf: failureURL)
+        } catch {
+            print("Failed to initialize audio players: \(error.localizedDescription)")
+        }
+    }
+
+    private func playSuccessSound() {
+        successAudioPlayer?.play()
+    }
+
+    private func playFailureSound() {
+        failureAudioPlayer?.play()
     }
 }
 

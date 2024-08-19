@@ -13,7 +13,8 @@ struct AlertModalView: View {
                 .foregroundColor(.red)
                 .multilineTextAlignment(.center)
                 .padding()
-            
+                .layoutPriority(1) // Ensures that this text is prioritized for space
+
             // Button to open the appropriate settings in System Preferences
             Button("Open Full Disk Access Settings") {
                 openFullDiskAccessSettings()
@@ -31,7 +32,7 @@ struct AlertModalView: View {
             Spacer()
         }
         .padding()
-        .frame(width: 400, height: 250)  // Set the size of the modal
+        .frame(width: 400)  // Only set the width, let height adjust dynamically
     }
 
     /// Opens the Full Disk Access settings in System Preferences.
