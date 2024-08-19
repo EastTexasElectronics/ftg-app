@@ -122,4 +122,4 @@ let languagesAndExclusions: [LanguageExclusion] = [
     LanguageExclusion(name: "XML", patterns: ["*.xml"]),
     LanguageExclusion(name: "YAML", patterns: ["*.yaml", "*.yml"]),
     LanguageExclusion(name: "Zsh", patterns: [".zshrc", ".zprofile"])
-].sorted(by: { $0.name < $1.name })  // Sort the languages alphabetically by name
+].sorted(by: { $0.name < $1.name })

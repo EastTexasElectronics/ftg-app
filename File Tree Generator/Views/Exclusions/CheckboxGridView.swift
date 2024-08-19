@@ -1,12 +1,5 @@
 import SwiftUI
 
-/**
- A view that provides a multi-selection grid for choosing programming languages or frameworks to exclude from the file tree generation process.
-
- - Parameters:
-    - selectedLanguages: A binding to a set of selected languages/frameworks.
-    - exclusionList: A binding to a set of exclusion patterns based on the selected languages/frameworks.
- */
 struct CheckboxGridView: View {
     @Binding var selectedLanguages: Set<String>
     @Binding var exclusionList: Set<String>
@@ -18,53 +11,61 @@ struct CheckboxGridView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            // Search Bar for filtering languages/frameworks
+            Text("Select Languages/Frameworks to Exclude")
+                .font(.headline)
+                .padding(.top)
+
             TextField("Search Languages/Frameworks", text: $searchText)
-                .padding(7)
-                .cornerRadius(8)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
 
-            // Grid of languages/frameworks with checkboxes
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 150)), count: 5), spacing: 10) {
                     ForEach(filteredLanguages(), id: \.name) { language in
                         CheckboxView(isChecked: tempSelectedLanguages.contains(language.name), label: language.name) {
                             toggleSelection(of: language.name)
                         }
-                        .help(language.patterns.joined(separator: ", ")) // Show patterns as tooltip
+                        .help(language.patterns.joined(separator: ", "))
                     }
                 }
                 .padding(.horizontal)
             }
             .frame(maxHeight: 400)
 
-            Button(action: {
-                applyChanges()
-                presentationMode.wrappedValue.dismiss() // Close and apply changes if nothing is selected applies nothing.
-            }) {
-                Text("Apply")
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 8)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(5)
+            Spacer()
+
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    applyChanges()
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("Apply")
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(5)
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                Spacer()
+                
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .padding(.trailing)
             }
-            .buttonStyle(PlainButtonStyle())
-            .help("Apply changes and close the window")
-            .padding(.bottom, 10)
+            .padding(.bottom)
         }
         .onAppear {
-            // Initialize tempSelectedLanguages with current selections
             tempSelectedLanguages = selectedLanguages
         }
         .padding()
+        .frame(width: 800, height: 600)
     }
 
-    /**
-     Filters the list of languages/frameworks based on the search text.
-
-     - Returns: A list of `LanguageExclusion` objects that match the search criteria.
-     */
     private func filteredLanguages() -> [LanguageExclusion] {
         if searchText.isEmpty {
             return languagesAndExclusions.sorted { $0.name < $1.name }
@@ -73,11 +74,6 @@ struct CheckboxGridView: View {
         }
     }
 
-    /**
-     Toggles the selection state of a given language/framework.
-
-     - Parameter item: The name of the language/framework to toggle.
-     */
     private func toggleSelection(of item: String) {
         if tempSelectedLanguages.contains(item) {
             tempSelectedLanguages.remove(item)
@@ -86,17 +82,11 @@ struct CheckboxGridView: View {
         }
     }
 
-    /**
-     Applies the temporary selection to the actual selection and updates the exclusion list.
-     */
     private func applyChanges() {
         selectedLanguages = tempSelectedLanguages
         updateExclusionList()
     }
 
-    /**
-     Updates the exclusion list based on the selected languages/frameworks.
-     */
     private func updateExclusionList() {
         exclusionList.removeAll()
         for language in selectedLanguages {
@@ -107,14 +97,6 @@ struct CheckboxGridView: View {
     }
 }
 
-/**
- A view that represents an individual checkbox with a label.
-
- - Parameters:
-    - isChecked: A state variable that indicates whether the checkbox is checked.
-    - label: The text label displayed next to the checkbox.
-    - onToggle: A closure that is called when the checkbox is toggled.
- */
 struct CheckboxView: View {
     @State var isChecked: Bool
     let label: String
@@ -134,18 +116,12 @@ struct CheckboxView: View {
             Text(label)
                 .lineLimit(1)
                 .truncationMode(.tail)
-                .frame(maxWidth: .infinity, alignment: .leading) // Left-align the text
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(minWidth: 150)
     }
 }
 
-/**
- An extension to the `String` class to add a case-insensitive prefix match.
-
- - Parameter prefix: The prefix to match against.
- - Returns: A Boolean value indicating whether the string starts with the specified prefix.
- */
 extension String {
     func localizedCaseInsensitiveStarts(with prefix: String) -> Bool {
         return self.lowercased().hasPrefix(prefix.lowercased())
@@ -159,7 +135,6 @@ struct CheckboxGridView_Previews: PreviewProvider {
 
     static var previews: some View {
         CheckboxGridView(selectedLanguages: $selectedLanguages, exclusionList: $exclusionList)
-            .frame(width: 800, height: 600)
             .previewLayout(.sizeThatFits)
 
         CheckboxView(isChecked: false, label: "Swift", onToggle: {})

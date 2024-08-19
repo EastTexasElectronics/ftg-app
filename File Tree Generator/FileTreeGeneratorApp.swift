@@ -12,6 +12,8 @@ struct FileTreeGeneratorApp: App {
     ]
     @State private var showingSaveSettings = false
     @State private var showingManageProfiles = false
+    @State private var showingGettingStarted = false
+    @AppStorage("showGettingStartedOnLaunch") private var showGettingStartedOnLaunch = true
 
     var body: some Scene {
         WindowGroup {
@@ -23,6 +25,9 @@ struct FileTreeGeneratorApp: App {
                             self.selectedProfile = profiles.keys.first
                         }
                     }
+                    if showGettingStartedOnLaunch {
+                        showingGettingStarted = true
+                    }
                 }
                 .sheet(isPresented: $showingManageProfiles) {
                     ManageProfilesView(profiles: $profiles, selectedProfile: $selectedProfile, loadProfile: appDelegate.loadProfile, removeProfile: appDelegate.removeProfile, renameProfile: appDelegate.renameProfile) {
@@ -33,6 +38,9 @@ struct FileTreeGeneratorApp: App {
                     SaveSettingsView(isPresented: $showingSaveSettings, profileName: .constant(selectedProfile ?? ""), showError: .constant(false)) {
                         appDelegate.saveProfile(named: selectedProfile ?? "")
                     }
+                }
+                .sheet(isPresented: $showingGettingStarted) {
+                    GettingStartedView(isPresented: $showingGettingStarted)
                 }
         }
         .commands {
@@ -67,6 +75,12 @@ struct FileTreeGeneratorApp: App {
                     Button("Save Current Settings") {
                         showingSaveSettings = true
                     }
+                }
+
+                Divider()
+
+                Button("Show Getting Started") {
+                    showingGettingStarted = true
                 }
             }
         }
@@ -177,4 +191,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         print("Review request function called.")
     }
-    }
+}

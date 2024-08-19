@@ -23,6 +23,8 @@ struct ContentView: View {
     @State private var showingHelpView = false
     @State private var showingAboutView = false
     @State private var showingExclusionView = false
+
+    // Audio players
     @State private var successAudioPlayer: AVAudioPlayer?
     @State private var failureAudioPlayer: AVAudioPlayer?
 
@@ -95,7 +97,7 @@ struct ContentView: View {
 
             VStack(spacing: 10) {
                 Button("Add Exclusions") {
-                    showingExclusionView = true
+                    showingExclusionView = true  // Show the CheckboxGridView
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 2)
@@ -298,9 +300,6 @@ struct ContentView: View {
         }
     }
     
-    /// Saves the current exclusion list and file format to a named profile.
-    ///
-    /// - Parameter name: The name of the profile to save.
     private func saveProfile(named name: String) {
         guard !name.isEmpty else {
             showError = true
@@ -318,28 +317,17 @@ struct ContentView: View {
         showingSaveSettings = false
     }
     
-    /// Loads a profile by its name.
-    ///
-    /// - Parameter name: The name of the profile to load.
     private func loadProfile(named name: String?) {
         guard let name = name, let profile = profiles[name] else { return }
         exclusionList = profile.exclusionList
         selectedFileFormat = profile.selectedFileFormat
     }
     
-    /// Removes a profile by its name.
-    ///
-    /// - Parameter name: The name of the profile to remove.
     private func removeProfile(named name: String) {
         profiles.removeValue(forKey: name)
         saveProfilesToUserDefaults()
     }
     
-    /// Renames an existing profile.
-    ///
-    /// - Parameters:
-    ///   - oldName: The current name of the profile.
-    ///   - newName: The new name of the profile.
     private func renameProfile(oldName: String, newName: String) {
         guard !newName.isEmpty else { return }
         if let profile = profiles.removeValue(forKey: oldName) {
@@ -380,6 +368,8 @@ struct ContentView: View {
             print("Failed to initialize audio players: \(error.localizedDescription)")
         }
     }
+
+    // MARK: - Audio Playback
 
     private func playSuccessSound() {
         successAudioPlayer?.play()

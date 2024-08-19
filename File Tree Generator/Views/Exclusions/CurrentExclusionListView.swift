@@ -40,8 +40,7 @@ struct CurrentExclusionListView: View {
                 }
                 .padding(.horizontal, 5)
             }
-            .frame(maxHeight: 300) // Increased height to make the view taller
-             // Lighter background color for the entire grid container
+            .frame(maxHeight: 300)
             .cornerRadius(8)
         }
         

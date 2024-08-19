@@ -32,7 +32,7 @@ struct AlertModalView: View {
             Spacer()
         }
         .padding()
-        .frame(width: 400)  // Only set the width, let height adjust dynamically
+        .frame(width: 400)
     }
 
     /// Opens the Full Disk Access settings in System Preferences.

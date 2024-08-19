@@ -9,6 +9,7 @@ struct ToggleFileFormatView: View {
             Picker("", selection: $selectedFileFormat) {
                 Text("Markdown").tag("Markdown")
                 Text("Pain Text").tag("Pain Text")
+                Text("HTML").tag("HTML")
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(maxWidth: 200)

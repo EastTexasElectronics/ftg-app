@@ -46,13 +46,25 @@ struct GenerateButtonView: View {
         guard !inputDirectory.isEmpty else {
             alertMessage = "Please select an input directory."
             showAlert = true
-            playFailureSound()  // Play failure sound on missing input
+            playFailureSound()
+            print("Attempted to generate file tree without selecting input directory")
             return
         }
 
-        isGenerating = true  // Start showing the progress view
+        isGenerating = true
         DispatchQueue.global(qos: .userInitiated).async {
-            let fileExtension = selectedFileFormat.contains(".txt") ? ".txt" : ".md"
+            let fileExtension: String
+            switch selectedFileFormat {
+            case "Markdown":
+                fileExtension = ".md"
+            case "Plain Text":
+                fileExtension = ".txt"
+            case "HTML":
+                fileExtension = ".html"
+            default:
+                fileExtension = ".md"
+            }
+            
             let outputLocation = outputFile.isEmpty ? getUniqueOutputFileName(for: "\(inputDirectory)/file_tree\(fileExtension)") : getUniqueOutputFileName(for: outputFile)
 
             let startTime = Date()
@@ -64,17 +76,20 @@ struct GenerateButtonView: View {
                         let endTime = Date()
                         let elapsedTime = endTime.timeIntervalSince(startTime)
                         alertMessage = "File tree generated at \(outputLocation) in \(String(format: "%.2f", elapsedTime)) seconds."
-                        playSuccessSound()  // Play success sound on successful generation
+                        playSuccessSound()
+                        print("File tree generated successfully at \(outputLocation) in \(elapsedTime) seconds")
                     } else {
                         alertMessage = "Failed to generate file tree. Please check your permissions or file path."
-                        playFailureSound()  // Play failure sound on generation failure
+                        playFailureSound()
+                        print("Failed to generate file tree at \(outputLocation)")
                     }
                     showAlert = true
                 } else {
                     showingAlertModal = true
-                    playFailureSound()  // Play failure sound on permission issue
+                    playFailureSound()
+                    print("Permission denied for output location: \(outputLocation)")
                 }
-                isGenerating = false  // Hide the progress view
+                isGenerating = false
             }
         }
     }
@@ -131,5 +146,19 @@ struct GenerateButtonView: View {
 
     private func playFailureSound() {
         failureAudioPlayer?.play()
+    }
+}
+
+struct GenerateButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        GenerateButtonView(
+            inputDirectory: .constant(""),
+            alertMessage: .constant(""),
+            showAlert: .constant(false),
+            exclusionList: .constant([]),
+            outputFile: .constant(""),
+            showingAlertModal: .constant(false),
+            selectedFileFormat: "Markdown"
+        )
     }
 }

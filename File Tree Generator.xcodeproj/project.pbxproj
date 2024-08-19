@@ -60,9 +60,6 @@
 		8CA9CFE92C7144D500799DB6 /* ManageProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178C32C66C01F00E64522 /* ManageProfilesView.swift */; };
 		8CA9CFEA2C7144D800799DB6 /* SaveSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9178BD2C66BA1A00E64522 /* SaveSettingsView.swift */; };
 		8CA9CFEB2C7144DA00799DB6 /* ToggleFileFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFCC2C705C0B00799DB6 /* ToggleFileFormatView.swift */; };
-		8CA9CFF12C729DB300799DB6 /* ExclusionsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFF02C729DB300799DB6 /* ExclusionsSelectionView.swift */; };
-		8CA9CFF22C729DB300799DB6 /* ExclusionsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFF02C729DB300799DB6 /* ExclusionsSelectionView.swift */; };
-		8CA9CFF32C729DB300799DB6 /* ExclusionsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFF02C729DB300799DB6 /* ExclusionsSelectionView.swift */; };
 		8CA9CFF52C729E2500799DB6 /* LanguageExclusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */; };
 		8CA9CFF62C729E2500799DB6 /* LanguageExclusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */; };
 		8CA9CFF72C729E2500799DB6 /* LanguageExclusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */; };
@@ -72,6 +69,12 @@
 		8CA9CFFD2C72A05900799DB6 /* ProfileSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFFC2C72A05900799DB6 /* ProfileSelectionView.swift */; };
 		8CA9CFFE2C72A05900799DB6 /* ProfileSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFFC2C72A05900799DB6 /* ProfileSelectionView.swift */; };
 		8CA9CFFF2C72A05900799DB6 /* ProfileSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9CFFC2C72A05900799DB6 /* ProfileSelectionView.swift */; };
+		8CCA5A4A2C73A637009273F5 /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A492C73A637009273F5 /* GettingStartedView.swift */; };
+		8CCA5A4B2C73A637009273F5 /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A492C73A637009273F5 /* GettingStartedView.swift */; };
+		8CCA5A4C2C73A637009273F5 /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A492C73A637009273F5 /* GettingStartedView.swift */; };
+		8CCA5A4E2C73CDEA009273F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A4D2C73CDEA009273F5 /* Constants.swift */; };
+		8CCA5A4F2C73CDEA009273F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A4D2C73CDEA009273F5 /* Constants.swift */; };
+		8CCA5A502C73CDEA009273F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A4D2C73CDEA009273F5 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,12 +121,13 @@
 		8CA9CFB12C6FC6C700799DB6 /* Changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
 		8CA9CFB22C6FC95B00799DB6 /* File-Tree-Generator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "File-Tree-Generator-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8CA9CFC42C6FD37F00799DB6 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Complete_Audio.aiff; path = "File Tree Generator/Complete_Audio.aiff"; sourceTree = SOURCE_ROOT; };
+		8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Complete_Audio.aiff; path = "File Tree Generator/Audio/Complete_Audio.aiff"; sourceTree = SOURCE_ROOT; };
 		8CA9CFCC2C705C0B00799DB6 /* ToggleFileFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleFileFormatView.swift; sourceTree = "<group>"; };
-		8CA9CFF02C729DB300799DB6 /* ExclusionsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusionsSelectionView.swift; sourceTree = "<group>"; };
 		8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageExclusion.swift; sourceTree = "<group>"; };
 		8CA9CFF82C729FD900799DB6 /* CheckboxGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxGridView.swift; sourceTree = "<group>"; };
 		8CA9CFFC2C72A05900799DB6 /* ProfileSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSelectionView.swift; sourceTree = "<group>"; };
+		8CCA5A492C73A637009273F5 /* GettingStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedView.swift; sourceTree = "<group>"; };
+		8CCA5A4D2C73CDEA009273F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,8 +179,6 @@
 		8C160AE22C665C350066B7AB /* File Tree Generator */ = {
 			isa = PBXGroup;
 			children = (
-				8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */,
-				8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */,
 				8CA9CFC92C6FFF2C00799DB6 /* Audio */,
 				8CA9CFB22C6FC95B00799DB6 /* File-Tree-Generator-Info.plist */,
 				8C160AE32C665C350066B7AB /* FileTreeGeneratorApp.swift */,
@@ -200,22 +202,15 @@
 		8C91788B2C66781E00E64522 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CCA5A482C739DBA009273F5 /* Settings */,
+				8CCA5A472C739D72009273F5 /* Profile */,
+				8CCA5A462C739D51009273F5 /* Exclusions */,
 				8C9178862C6677F700E64522 /* AboutView.swift */,
 				8C9178B42C66A18A00E64522 /* AlertModalView.swift */,
 				8C160AE52C665C350066B7AB /* ContentView.swift */,
-				8CA9CFF82C729FD900799DB6 /* CheckboxGridView.swift */,
-				8C9178A22C668ADA00E64522 /* CurrentExclusionListView.swift */,
-				8C9178962C668A8B00E64522 /* DirectoryFieldView.swift */,
-				8C9178992C668AA600E64522 /* DirectorySelectionView.swift */,
-				8CA9CFF02C729DB300799DB6 /* ExclusionsSelectionView.swift */,
 				8C9178A52C668AED00E64522 /* GenerateButtonView.swift */,
 				8C9178882C66780500E64522 /* HelpView.swift */,
-				8C9178C32C66C01F00E64522 /* ManageProfilesView.swift */,
-				8C91789F2C668ACB00E64522 /* ManualExclusionView.swift */,
-				8CA9CFFC2C72A05900799DB6 /* ProfileSelectionView.swift */,
-				8C9178BD2C66BA1A00E64522 /* SaveSettingsView.swift */,
-				8C160B112C6667A60066B7AB /* SelectPresetExclusions.swift */,
-				8CA9CFCC2C705C0B00799DB6 /* ToggleFileFormatView.swift */,
+				8CCA5A492C73A637009273F5 /* GettingStartedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +221,7 @@
 				8C9178902C66793900E64522 /* FileTreeGenerator.swift */,
 				8C9178C02C66BAD200E64522 /* SettingsProfile.swift */,
 				8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */,
+				8CCA5A4D2C73CDEA009273F5 /* Constants.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -242,8 +238,41 @@
 		8CA9CFC92C6FFF2C00799DB6 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */,
+				8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		8CCA5A462C739D51009273F5 /* Exclusions */ = {
+			isa = PBXGroup;
+			children = (
+				8CA9CFF82C729FD900799DB6 /* CheckboxGridView.swift */,
+				8C91789F2C668ACB00E64522 /* ManualExclusionView.swift */,
+				8C160B112C6667A60066B7AB /* SelectPresetExclusions.swift */,
+				8C9178A22C668ADA00E64522 /* CurrentExclusionListView.swift */,
+			);
+			path = Exclusions;
+			sourceTree = "<group>";
+		};
+		8CCA5A472C739D72009273F5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8C9178BD2C66BA1A00E64522 /* SaveSettingsView.swift */,
+				8CA9CFFC2C72A05900799DB6 /* ProfileSelectionView.swift */,
+				8C9178C32C66C01F00E64522 /* ManageProfilesView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8CCA5A482C739DBA009273F5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8C9178962C668A8B00E64522 /* DirectoryFieldView.swift */,
+				8C9178992C668AA600E64522 /* DirectorySelectionView.swift */,
+				8CA9CFCC2C705C0B00799DB6 /* ToggleFileFormatView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,11 +419,12 @@
 				8CA9CFCD2C705C0B00799DB6 /* ToggleFileFormatView.swift in Sources */,
 				8C9178912C66793900E64522 /* FileTreeGenerator.swift in Sources */,
 				8C9178BE2C66BA1A00E64522 /* SaveSettingsView.swift in Sources */,
+				8CCA5A4A2C73A637009273F5 /* GettingStartedView.swift in Sources */,
 				8C160AE62C665C350066B7AB /* ContentView.swift in Sources */,
 				8C9178B52C66A18A00E64522 /* AlertModalView.swift in Sources */,
 				8C160AE42C665C350066B7AB /* FileTreeGeneratorApp.swift in Sources */,
+				8CCA5A4E2C73CDEA009273F5 /* Constants.swift in Sources */,
 				8C160B122C6667A60066B7AB /* SelectPresetExclusions.swift in Sources */,
-				8CA9CFF12C729DB300799DB6 /* ExclusionsSelectionView.swift in Sources */,
 				8C9178872C6677F700E64522 /* AboutView.swift in Sources */,
 				8CA9CFF52C729E2500799DB6 /* LanguageExclusion.swift in Sources */,
 				8C91789A2C668AA600E64522 /* DirectorySelectionView.swift in Sources */,
@@ -417,11 +447,12 @@
 				8CA9CFEB2C7144DA00799DB6 /* ToggleFileFormatView.swift in Sources */,
 				8CA9CFDB2C7144B500799DB6 /* ContentView.swift in Sources */,
 				8CA9CFEA2C7144D800799DB6 /* SaveSettingsView.swift in Sources */,
+				8CCA5A4B2C73A637009273F5 /* GettingStartedView.swift in Sources */,
 				8CA9CFDD2C7144B800799DB6 /* SelectPresetExclusions.swift in Sources */,
 				8CA9CFD22C7144A200799DB6 /* FileTreeGenerator.swift in Sources */,
 				8CA9CFDE2C7144BA00799DB6 /* HelpView.swift in Sources */,
+				8CCA5A4F2C73CDEA009273F5 /* Constants.swift in Sources */,
 				8CA9CFE72C7144D100799DB6 /* AlertModalView.swift in Sources */,
-				8CA9CFF22C729DB300799DB6 /* ExclusionsSelectionView.swift in Sources */,
 				8CA9CFD42C7144A600799DB6 /* SettingsProfile.swift in Sources */,
 				8CA9CFF62C729E2500799DB6 /* LanguageExclusion.swift in Sources */,
 				8CA9CFE02C7144C000799DB6 /* DirectorySelectionView.swift in Sources */,
@@ -444,10 +475,11 @@
 				8C9178C52C66C01F00E64522 /* ManageProfilesView.swift in Sources */,
 				8CA9CFDA2C7144B300799DB6 /* AboutView.swift in Sources */,
 				8C91789B2C668AA600E64522 /* DirectorySelectionView.swift in Sources */,
+				8CCA5A4C2C73A637009273F5 /* GettingStartedView.swift in Sources */,
 				8C9178A12C668ACB00E64522 /* ManualExclusionView.swift in Sources */,
 				8C9178982C668A8B00E64522 /* DirectoryFieldView.swift in Sources */,
 				8C9178A72C668AED00E64522 /* GenerateButtonView.swift in Sources */,
-				8CA9CFF32C729DB300799DB6 /* ExclusionsSelectionView.swift in Sources */,
+				8CCA5A502C73CDEA009273F5 /* Constants.swift in Sources */,
 				8C9178A42C668ADA00E64522 /* CurrentExclusionListView.swift in Sources */,
 				8CA9CFF72C729E2500799DB6 /* LanguageExclusion.swift in Sources */,
 				8CA9CFD32C7144A300799DB6 /* FileTreeGenerator.swift in Sources */,
@@ -529,7 +561,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -586,7 +618,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -618,7 +650,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -651,7 +683,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "RMH.File-Tree-Generator";
 				PRODUCT_NAME = "$(TARGET_NAME)";

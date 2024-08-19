@@ -1,11 +1,5 @@
 import SwiftUI
 
-/// A view that allows users to manually add custom exclusion patterns.
-/// The user can enter patterns in a text field and add them to the exclusion list.
-///
-/// - Parameters:
-///   - manualExclusion: A binding to the text entered by the user for a custom exclusion pattern.
-///   - exclusionList: A binding to the set of exclusion patterns that are currently applied.
 struct ManualExclusionView: View {
     @Binding var manualExclusion: String
     @Binding var exclusionList: Set<String>
@@ -19,7 +13,6 @@ struct ManualExclusionView: View {
             .help("Please ensure items are comma separated.")
             .padding(.vertical, 2)
 
-            // Button to add the entered exclusion pattern to the list
             Button("Add") {
                 addManualExclusion()
             }
@@ -27,20 +20,16 @@ struct ManualExclusionView: View {
         }
     }
 
-    /// Adds the entered exclusion pattern(s) to the exclusion list.
-    /// If the text field is empty, the function does nothing.
     private func addManualExclusion() {
         guard !manualExclusion.isEmpty else { return }
         
-        // Split the input by commas and trim whitespace from each part
         let patterns = manualExclusion.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
         
-        // Insert each pattern into the exclusion list
         for pattern in patterns {
             exclusionList.insert(pattern)
+            print("Added manual exclusion: \(pattern)")
         }
         
-        // Clear the text field after adding the exclusions
         manualExclusion = ""
     }
 }
