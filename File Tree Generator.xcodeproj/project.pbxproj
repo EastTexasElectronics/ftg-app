@@ -118,7 +118,7 @@
 		8CA9CFB12C6FC6C700799DB6 /* Changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Changelog.md; sourceTree = "<group>"; };
 		8CA9CFB22C6FC95B00799DB6 /* File-Tree-Generator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "File-Tree-Generator-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8CA9CFC42C6FD37F00799DB6 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Complete_Audio.aiff; path = "File Tree Generator/Audio/Complete_Audio.aiff"; sourceTree = SOURCE_ROOT; };
+		8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = Complete_Audio.aiff; path = "File Tree Generator/Complete_Audio.aiff"; sourceTree = SOURCE_ROOT; };
 		8CA9CFCC2C705C0B00799DB6 /* ToggleFileFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleFileFormatView.swift; sourceTree = "<group>"; };
 		8CA9CFF02C729DB300799DB6 /* ExclusionsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusionsSelectionView.swift; sourceTree = "<group>"; };
 		8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageExclusion.swift; sourceTree = "<group>"; };
@@ -175,6 +175,8 @@
 		8C160AE22C665C350066B7AB /* File Tree Generator */ = {
 			isa = PBXGroup;
 			children = (
+				8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */,
+				8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */,
 				8CA9CFC92C6FFF2C00799DB6 /* Audio */,
 				8CA9CFB22C6FC95B00799DB6 /* File-Tree-Generator-Info.plist */,
 				8C160AE32C665C350066B7AB /* FileTreeGeneratorApp.swift */,
@@ -240,8 +242,6 @@
 		8CA9CFC92C6FFF2C00799DB6 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				8CA9CFC72C6FFF2400799DB6 /* Complete_Audio.aiff */,
-				8C14E7E52C7316D70090A0F7 /* Fail_Audio.aiff */,
 			);
 			path = Audio;
 			sourceTree = "<group>";

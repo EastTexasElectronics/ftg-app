@@ -15,7 +15,7 @@ struct FileTreeGeneratorApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(selectedProfile: $selectedProfile, profiles: $profiles)
+            ContentView(selectedProfile: $selectedProfile, profiles: $profiles, appDelegate: appDelegate)
                 .onAppear {
                     appDelegate.loadProfiles { profiles in
                         self.profiles = profiles
@@ -73,20 +73,19 @@ struct FileTreeGeneratorApp: App {
     }
 }
 
-
 class AppDelegate: NSObject, NSApplicationDelegate {
     var helpWindow: NSWindow?
     var aboutWindow: NSWindow?
-
+    
     @State private var profiles: [String: SettingsProfile] = [:]
-
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
         loadProfiles { profiles in
             self.profiles = profiles
         }
     }
-
+    
     @objc func showHelpWindow() {
         if helpWindow == nil {
             helpWindow = NSWindow(
@@ -101,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             helpWindow?.makeKeyAndOrderFront(nil)
         }
     }
-
+    
     @objc func showAboutWindow() {
         if aboutWindow == nil {
             aboutWindow = NSWindow(
@@ -116,7 +115,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             aboutWindow?.makeKeyAndOrderFront(nil)
         }
     }
-
+    
     func loadProfiles(completion: @escaping ([String: SettingsProfile]) -> Void) {
         let decoder = JSONDecoder()
         if let savedProfiles = UserDefaults.standard.object(forKey: "savedProfiles") as? Data {
@@ -127,44 +126,55 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         completion([:])
     }
-
+    
     func loadProfile(named name: String) {
         guard profiles[name] != nil else { return }
         // Update app state based on loaded profile
     }
-
+    
     func saveProfile(named name: String) {
         guard !name.isEmpty else { return }
         let profile = SettingsProfile(exclusionList: [], selectedFileFormat: "Markdown (.md)")
         profiles[name] = profile
         saveProfilesToUserDefaults()
     }
-
+    
     func removeProfile(named name: String) {
         profiles.removeValue(forKey: name)
         saveProfilesToUserDefaults()
     }
-
+    
     func renameProfile(oldName: String, newName: String) {
         guard let profile = profiles.removeValue(forKey: oldName) else { return }
         profiles[newName] = profile
         saveProfilesToUserDefaults()
     }
-
+    
     private func saveProfilesToUserDefaults() {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(profiles) {
             UserDefaults.standard.set(encoded, forKey: "savedProfiles")
         }
     }
-
-    // Add the review request function
+    
     func requestReview() {
-        print("Attempting to request a review...") // Debugging line
-
-        // On macOS, SKStoreReviewController.requestReview() doesn't require any parameters
+        print("Attempting to request a review...")
+        
+#if DEBUG
+        print("Debug build: Review request would be called here, but won't show in debug mode.")
+        // You could show a custom alert here for testing purposes
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.messageText = "Review Requested"
+            alert.informativeText = "In a production build, this would potentially trigger a review prompt (at Apple's discretion)."
+            alert.alertStyle = .informational
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
+#else
         SKStoreReviewController.requestReview()
-
-        print("Review request function called.") // Debugging line
+#endif
+        
+        print("Review request function called.")
     }
-}
+    }

@@ -2,11 +2,11 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-
     // MARK: - Properties
 
     @Binding var selectedProfile: String?
     @Binding var profiles: [String: SettingsProfile]
+    let appDelegate: AppDelegate
     @State private var showingSaveSettings = false
     @State private var showingManageProfiles = false
     @State private var inputDirectory: String = ""
@@ -22,11 +22,7 @@ struct ContentView: View {
     @State private var showError = false
     @State private var showingHelpView = false
     @State private var showingAboutView = false
-
-    // New State for showing CheckboxGridView
     @State private var showingExclusionView = false
-
-    // Audio players
     @State private var successAudioPlayer: AVAudioPlayer?
     @State private var failureAudioPlayer: AVAudioPlayer?
 
@@ -38,7 +34,6 @@ struct ContentView: View {
             buttonGroup
             manualExclusionSection
             generateButtonSection
-            reviewButtonSection
             exclusionListView
             Spacer()
         }
@@ -64,7 +59,6 @@ struct ContentView: View {
         }
     }
 
-    
     // MARK: - Profile Selection Section
 
     private var profileSelectionSection: some View {
@@ -72,7 +66,6 @@ struct ContentView: View {
             selectedProfile: $selectedProfile,
             profiles: profiles,
             loadProfile: loadProfile
-            
         )
         .padding(.top, 8)
         .padding(.bottom, 4)
@@ -102,7 +95,7 @@ struct ContentView: View {
 
             VStack(spacing: 10) {
                 Button("Add Exclusions") {
-                    showingExclusionView = true  // Show the CheckboxGridView
+                    showingExclusionView = true
                 }
                 .padding(.horizontal, 10)
                 .padding(.vertical, 2)
@@ -217,22 +210,6 @@ struct ContentView: View {
             .padding(.top, 10)
         }
         .frame(maxWidth: .infinity, alignment: .center)
-    }
-
-    // MARK: - Review Button Section
-    
-    private var reviewButtonSection: some View {
-        Button("Leave a Review") {
-            // Request review using the AppDelegate function
-            if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
-                appDelegate.requestReview()
-            }
-        }
-        .padding()
-        .background(Color.blue)
-        .foregroundColor(.white)
-        .cornerRadius(10)
-        .padding(.top, 20)
     }
 
     // MARK: - Manual Exclusion Section
@@ -422,6 +399,6 @@ struct ContentView_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        ContentView(selectedProfile: $selectedProfile, profiles: $profiles)
+        ContentView(selectedProfile: $selectedProfile, profiles: $profiles, appDelegate: AppDelegate())
     }
 }
