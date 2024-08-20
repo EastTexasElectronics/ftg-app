@@ -53,3 +53,21 @@ Fix Alert Modal text is truncating
 Fix menu bar
 Make sure Markdown is visially selected by default
 
+sudo /Users/rmh/dev/Personal_Projects/Copy-to-Clipboard/copy_files_to_clipboard.zsh /Users/rmh/dev/Personal_Projects/File\ Tree\ Generator/File\ Tree\ Generator/Functions /Users/rmh/dev/Personal_Projects/File\ Tree\ Generator/File\ Tree\ Generator/Views
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

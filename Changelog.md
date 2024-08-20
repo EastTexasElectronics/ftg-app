@@ -20,6 +20,7 @@
 ### Fixes
 
 - Fixed bad link in leave a review
+- File names are generating corretly when the current file name already exsists for example from file_tree_1_2_3.md to file_tree_3.md
 
 ### Removed
 

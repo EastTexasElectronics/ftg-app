@@ -43,10 +43,7 @@ struct GenerateButtonView: View {
                     fileTree: $fileTree,
                     isGenerating: $showFileTreeView,
                     isSuccess: $isSuccess,
-                    alertMessage: $alertMessage,
-                    directorySize: directorySize,   // Correct type: Int64
-                    elapsedTime: elapsedTime,       // Correct type: Double
-                    outputLocation: outputLocation
+                    alertMessage: $alertMessage
                 )
             }
         }
@@ -80,18 +77,25 @@ struct GenerateButtonView: View {
             DispatchQueue.main.async {
                 self.isGenerating = false
                 if success {
-                    self.fileTree = (try? String(contentsOfFile: self.outputLocation)) ?? "Failed to load the generated file tree."
-                    self.elapsedTime = Date().timeIntervalSince(startTime)  // Capture elapsed time
+                    // Directly calculating the directory size and elapsed time
                     self.directorySize = self.calculateDirectorySize(atPath: self.inputDirectory)  // Calculate directory size
+                    self.elapsedTime = Date().timeIntervalSince(startTime)  // Capture elapsed time
+                    
+                    // Logging for debugging
+                    print("Directory Size calculated: \(self.directorySize)")
+                    print("Elapsed Time calculated: \(self.elapsedTime)")
+                    print("Output Location set to: \(self.outputLocation)")
+                    
+                    self.fileTree = (try? String(contentsOfFile: self.outputLocation)) ?? "Failed to load the generated file tree."
                     self.isSuccess = true
                     self.playSuccessSound()
-                    self.showFileTreeView = true  // Show the file tree view upon successful generation
                 } else {
                     self.alertMessage = "Failed to generate file tree. Please check your permissions or file path."
                     self.isSuccess = false
                     self.playFailureSound()
-                    self.showFileTreeView = true  // Still show the file tree view with an error message
                 }
+                // Show the FileTreeView upon completion
+                self.showFileTreeView = true
             }
         }
     }
@@ -114,9 +118,10 @@ struct GenerateButtonView: View {
         let fileManager = FileManager.default
         var counter = 1
 
+        let baseName = url.deletingPathExtension().lastPathComponent
+        let fileExtension = url.pathExtension
+
         while fileManager.fileExists(atPath: url.path) {
-            let baseName = url.deletingPathExtension().lastPathComponent
-            let fileExtension = url.pathExtension
             let newName = "\(baseName)_\(counter)"
             url.deleteLastPathComponent()
             url.appendPathComponent(newName)

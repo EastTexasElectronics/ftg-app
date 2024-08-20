@@ -81,9 +81,12 @@
 		8CCA5A562C73D726009273F5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A552C73D726009273F5 /* SpinnerView.swift */; };
 		8CCA5A572C73D726009273F5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A552C73D726009273F5 /* SpinnerView.swift */; };
 		8CCA5A582C73D726009273F5 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A552C73D726009273F5 /* SpinnerView.swift */; };
-		8CCA5A5A2C7439B8009273F5 /* FileTreeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A592C7439B8009273F5 /* FileTreeData.swift */; };
-		8CCA5A5B2C7439B8009273F5 /* FileTreeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A592C7439B8009273F5 /* FileTreeData.swift */; };
-		8CCA5A5C2C7439B8009273F5 /* FileTreeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A592C7439B8009273F5 /* FileTreeData.swift */; };
+		8CCA5A632C74F3F1009273F5 /* FileTypeMappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A622C74F3F1009273F5 /* FileTypeMappings.swift */; };
+		8CCA5A642C74F3F1009273F5 /* FileTypeMappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A622C74F3F1009273F5 /* FileTypeMappings.swift */; };
+		8CCA5A652C74F3F1009273F5 /* FileTypeMappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A622C74F3F1009273F5 /* FileTypeMappings.swift */; };
+		8CCA5A672C74F695009273F5 /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A662C74F695009273F5 /* LegendView.swift */; };
+		8CCA5A682C74F695009273F5 /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A662C74F695009273F5 /* LegendView.swift */; };
+		8CCA5A692C74F695009273F5 /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA5A662C74F695009273F5 /* LegendView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +142,8 @@
 		8CCA5A4D2C73CDEA009273F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8CCA5A512C73CFF3009273F5 /* FileTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTreeView.swift; sourceTree = "<group>"; };
 		8CCA5A552C73D726009273F5 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
-		8CCA5A592C7439B8009273F5 /* FileTreeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTreeData.swift; sourceTree = "<group>"; };
+		8CCA5A622C74F3F1009273F5 /* FileTypeMappings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeMappings.swift; sourceTree = "<group>"; };
+		8CCA5A662C74F695009273F5 /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,17 +218,14 @@
 		8C91788B2C66781E00E64522 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CCA5A612C74D333009273F5 /* Generation */,
 				8CCA5A482C739DBA009273F5 /* Settings */,
 				8CCA5A472C739D72009273F5 /* Profile */,
 				8CCA5A462C739D51009273F5 /* Exclusions */,
 				8C9178862C6677F700E64522 /* AboutView.swift */,
-				8C9178B42C66A18A00E64522 /* AlertModalView.swift */,
 				8C160AE52C665C350066B7AB /* ContentView.swift */,
-				8C9178A52C668AED00E64522 /* GenerateButtonView.swift */,
 				8C9178882C66780500E64522 /* HelpView.swift */,
 				8CCA5A492C73A637009273F5 /* GettingStartedView.swift */,
-				8CCA5A512C73CFF3009273F5 /* FileTreeView.swift */,
-				8CCA5A552C73D726009273F5 /* SpinnerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,7 +237,7 @@
 				8C9178C02C66BAD200E64522 /* SettingsProfile.swift */,
 				8CA9CFF42C729E2500799DB6 /* LanguageExclusion.swift */,
 				8CCA5A4D2C73CDEA009273F5 /* Constants.swift */,
-				8CCA5A592C7439B8009273F5 /* FileTreeData.swift */,
+				8CCA5A622C74F3F1009273F5 /* FileTypeMappings.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -288,6 +289,18 @@
 				8CA9CFCC2C705C0B00799DB6 /* ToggleFileFormatView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		8CCA5A612C74D333009273F5 /* Generation */ = {
+			isa = PBXGroup;
+			children = (
+				8C9178B42C66A18A00E64522 /* AlertModalView.swift */,
+				8C9178A52C668AED00E64522 /* GenerateButtonView.swift */,
+				8CCA5A512C73CFF3009273F5 /* FileTreeView.swift */,
+				8CCA5A552C73D726009273F5 /* SpinnerView.swift */,
+				8CCA5A662C74F695009273F5 /* LegendView.swift */,
+			);
+			path = Generation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +442,7 @@
 			files = (
 				8C9178892C66780500E64522 /* HelpView.swift in Sources */,
 				8CA9CFF92C729FD900799DB6 /* CheckboxGridView.swift in Sources */,
+				8CCA5A632C74F3F1009273F5 /* FileTypeMappings.swift in Sources */,
 				8CCA5A562C73D726009273F5 /* SpinnerView.swift in Sources */,
 				8C9178C12C66BAD200E64522 /* SettingsProfile.swift in Sources */,
 				8CA9CFFD2C72A05900799DB6 /* ProfileSelectionView.swift in Sources */,
@@ -439,10 +453,10 @@
 				8CCA5A522C73CFF3009273F5 /* FileTreeView.swift in Sources */,
 				8C160AE62C665C350066B7AB /* ContentView.swift in Sources */,
 				8C9178B52C66A18A00E64522 /* AlertModalView.swift in Sources */,
+				8CCA5A672C74F695009273F5 /* LegendView.swift in Sources */,
 				8C160AE42C665C350066B7AB /* FileTreeGeneratorApp.swift in Sources */,
 				8CCA5A4E2C73CDEA009273F5 /* Constants.swift in Sources */,
 				8C160B122C6667A60066B7AB /* SelectPresetExclusions.swift in Sources */,
-				8CCA5A5A2C7439B8009273F5 /* FileTreeData.swift in Sources */,
 				8C9178872C6677F700E64522 /* AboutView.swift in Sources */,
 				8CA9CFF52C729E2500799DB6 /* LanguageExclusion.swift in Sources */,
 				8C91789A2C668AA600E64522 /* DirectorySelectionView.swift in Sources */,
@@ -460,6 +474,7 @@
 			files = (
 				8CA9CFE92C7144D500799DB6 /* ManageProfilesView.swift in Sources */,
 				8CA9CFFA2C729FD900799DB6 /* CheckboxGridView.swift in Sources */,
+				8CCA5A642C74F3F1009273F5 /* FileTypeMappings.swift in Sources */,
 				8CCA5A572C73D726009273F5 /* SpinnerView.swift in Sources */,
 				8CA9CFD52C7144A800799DB6 /* FileTreeGeneratorApp.swift in Sources */,
 				8CA9CFFE2C72A05900799DB6 /* ProfileSelectionView.swift in Sources */,
@@ -470,10 +485,10 @@
 				8CCA5A532C73CFF3009273F5 /* FileTreeView.swift in Sources */,
 				8CA9CFDD2C7144B800799DB6 /* SelectPresetExclusions.swift in Sources */,
 				8CA9CFD22C7144A200799DB6 /* FileTreeGenerator.swift in Sources */,
+				8CCA5A682C74F695009273F5 /* LegendView.swift in Sources */,
 				8CA9CFDE2C7144BA00799DB6 /* HelpView.swift in Sources */,
 				8CCA5A4F2C73CDEA009273F5 /* Constants.swift in Sources */,
 				8CA9CFE72C7144D100799DB6 /* AlertModalView.swift in Sources */,
-				8CCA5A5B2C7439B8009273F5 /* FileTreeData.swift in Sources */,
 				8CA9CFD42C7144A600799DB6 /* SettingsProfile.swift in Sources */,
 				8CA9CFF62C729E2500799DB6 /* LanguageExclusion.swift in Sources */,
 				8CA9CFE02C7144C000799DB6 /* DirectorySelectionView.swift in Sources */,
@@ -491,6 +506,7 @@
 			files = (
 				8C9178D32C66D31700E64522 /* FileTreeGeneratorApp.swift in Sources */,
 				8CA9CFFB2C729FD900799DB6 /* CheckboxGridView.swift in Sources */,
+				8CCA5A652C74F3F1009273F5 /* FileTypeMappings.swift in Sources */,
 				8CCA5A582C73D726009273F5 /* SpinnerView.swift in Sources */,
 				8CA9CFDC2C7144B600799DB6 /* ContentView.swift in Sources */,
 				8CA9CFFF2C72A05900799DB6 /* ProfileSelectionView.swift in Sources */,
@@ -501,10 +517,10 @@
 				8CCA5A542C73CFF3009273F5 /* FileTreeView.swift in Sources */,
 				8C9178A12C668ACB00E64522 /* ManualExclusionView.swift in Sources */,
 				8C9178982C668A8B00E64522 /* DirectoryFieldView.swift in Sources */,
+				8CCA5A692C74F695009273F5 /* LegendView.swift in Sources */,
 				8C9178A72C668AED00E64522 /* GenerateButtonView.swift in Sources */,
 				8CCA5A502C73CDEA009273F5 /* Constants.swift in Sources */,
 				8C9178A42C668ADA00E64522 /* CurrentExclusionListView.swift in Sources */,
-				8CCA5A5C2C7439B8009273F5 /* FileTreeData.swift in Sources */,
 				8CA9CFF72C729E2500799DB6 /* LanguageExclusion.swift in Sources */,
 				8CA9CFD32C7144A300799DB6 /* FileTreeGenerator.swift in Sources */,
 				8C9178B62C66A18A00E64522 /* AlertModalView.swift in Sources */,

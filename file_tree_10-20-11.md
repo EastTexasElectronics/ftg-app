@@ -57,26 +57,27 @@
 │   └── Views
 │       ├── .DS_Store
 │       ├── AboutView.swift
-│       ├── AlertModalView.swift
 │       ├── ContentView.swift
 │       ├── Exclusions
 │       │   ├── CheckboxGridView.swift
 │       │   ├── CurrentExclusionListView.swift
 │       │   ├── ManualExclusionView.swift
 │       │   └── SelectPresetExclusions.swift
-│       ├── FileTreeView.swift
-│       ├── GenerateButtonView.swift
+│       ├── Generation
+│       │   ├── AlertModalView.swift
+│       │   ├── FileTreeView.swift
+│       │   ├── GenerateButtonView.swift
+│       │   └── SpinnerView.swift
 │       ├── GettingStartedView.swift
 │       ├── HelpView.swift
 │       ├── Profile
 │       │   ├── ManageProfilesView.swift
 │       │   ├── ProfileSelectionView.swift
 │       │   └── SaveSettingsView.swift
-│       ├── Settings
-│       │   ├── DirectoryFieldView.swift
-│       │   ├── DirectorySelectionView.swift
-│       │   └── ToggleFileFormatView.swift
-│       └── SpinnerView.swift
+│       └── Settings
+│           ├── DirectoryFieldView.swift
+│           ├── DirectorySelectionView.swift
+│           └── ToggleFileFormatView.swift
 ├── File Tree Generator.xcodeproj
 │   ├── project.pbxproj
 │   ├── project.xcworkspace
@@ -99,6 +100,5 @@
 │               └── xcschememanagement.plist
 ├── File-Tree-Generator-Info.plist
 ├── README.md
-├── file_tree_08-25-45.md
-└── file_tree_11-10-31.md
+└── file_tree_10-20-11.md
 ```
