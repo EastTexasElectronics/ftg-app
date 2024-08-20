@@ -1,12 +1,6 @@
+// DirectoryFieldView.swift
 import SwiftUI
 
-/// A view that displays a labeled text field with a "Browse" button.
-/// This view is used to allow the user to enter or select a directory path.
-///
-/// - Parameters:
-///   - title: The placeholder text for the text field, indicating its purpose.
-///   - text: A binding to the text field's value, representing the directory path.
-///   - buttonAction: The action to be performed when the "Browse" button is clicked.
 struct DirectoryField: View {
     var title: String
     @Binding var text: String
@@ -17,6 +11,7 @@ struct DirectoryField: View {
             TextField(title, text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 250)
+                .accessibilityLabel(title)
 
             Button(action: buttonAction) {
                 Text("Browse")
@@ -30,7 +25,6 @@ struct DirectoryField: View {
     }
 }
 
-// MARK: - Preview
 struct DirectoryField_Previews: PreviewProvider {
     @State static var text = ""
 

@@ -181,12 +181,9 @@ struct ContentView: View {
 
                 GenerateButtonView(
                     inputDirectory: $inputDirectory,
-                    alertMessage: $alertMessage,
-                    showAlert: $showAlert,
                     exclusionList: $exclusionList,
                     outputFile: $outputFile,
-                    showingAlertModal: $showingAlertModal,
-                    selectedFileFormat: selectedFileFormat
+                    selectedFileFormat: $selectedFileFormat // This should match exactly
                 )
                 .frame(height: 60)
                 .frame(width: 200)

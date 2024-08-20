@@ -3,94 +3,109 @@ import AVFoundation
 
 struct GenerateButtonView: View {
     @Binding var inputDirectory: String
-    @Binding var alertMessage: String
-    @Binding var showAlert: Bool
     @Binding var exclusionList: Set<String>
     @Binding var outputFile: String
-    @Binding var showingAlertModal: Bool
-    var selectedFileFormat: String
+    @Binding var selectedFileFormat: String
 
-    // Audio players
+    @State private var fileTree: String = ""
+    @State private var isGenerating: Bool = false
+    @State private var showFileTreeView: Bool = false
+    @State private var alertMessage: String = ""
+    @State private var isSuccess: Bool = false
+
     @State private var successAudioPlayer: AVAudioPlayer?
     @State private var failureAudioPlayer: AVAudioPlayer?
 
-    // State to track the progress
-    @State private var isGenerating: Bool = false
+    // New State variables to hold the correct types
+    @State private var directorySize: Int64 = 0
+    @State private var elapsedTime: Double = 0.0
+    @State private var outputLocation: String = ""
 
     var body: some View {
         VStack {
-            if isGenerating {
-                ProgressView("Generating File Tree...")
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .padding()
-            } else {
-                Button(action: generateFileTree) {
-                    Text("Generate File Tree")
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 5)
-                        .frame(height: 50)
-                        .accessibilityLabel("Select a Directory")
-                        .buttonStyle(PlainButtonStyle())
-                        .focusable(false)
-                }
-                .disabled(inputDirectory.isEmpty)
-                .help("Click to generate the file tree based on the selected directory and exclusion patterns.")
-                .onAppear {
-                    setupAudioPlayers()
+            Button(action: startFileGeneration) {
+                Text("Generate File Tree")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 5)
+                    .frame(height: 50)
+                    .buttonStyle(PlainButtonStyle())
+                    .focusable(false)
+            }
+            .disabled(inputDirectory.isEmpty)
+            .onAppear {
+                setupAudioPlayers()
+            }
+            .sheet(isPresented: $isGenerating) {
+                SpinnerView(isGenerating: $isGenerating)
+            }
+            .sheet(isPresented: $showFileTreeView) {
+                FileTreeView(
+                    fileTree: $fileTree,
+                    isGenerating: $showFileTreeView,
+                    isSuccess: $isSuccess,
+                    alertMessage: $alertMessage,
+                    directorySize: directorySize,   // Correct type: Int64
+                    elapsedTime: elapsedTime,       // Correct type: Double
+                    outputLocation: outputLocation
+                )
+            }
+        }
+    }
+
+    private func startFileGeneration() {
+        guard !inputDirectory.isEmpty else {
+            alertMessage = "Please select an input directory."
+            isSuccess = false
+            showFileTreeView = false
+            isGenerating = false
+            playFailureSound()
+            return
+        }
+
+        fileTree = ""
+        isGenerating = true
+        showFileTreeView = false
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            let fileExtension = self.getFileExtension(for: self.selectedFileFormat)
+            self.outputLocation = self.outputFile.isEmpty ? self.getUniqueOutputFileName(for: "\(self.inputDirectory)/file_tree\(fileExtension)") : self.outputFile
+
+            let startTime = Date()
+            let generator = FileTreeGenerator(inputDirectory: self.inputDirectory, outputLocation: self.outputLocation, excludePatterns: Array(self.exclusionList), selectedFileFormat: self.selectedFileFormat)
+
+            let success = generator.run { _ in
+                // No longer appending lines during the generation process
+            }
+
+            DispatchQueue.main.async {
+                self.isGenerating = false
+                if success {
+                    self.fileTree = (try? String(contentsOfFile: self.outputLocation)) ?? "Failed to load the generated file tree."
+                    self.elapsedTime = Date().timeIntervalSince(startTime)  // Capture elapsed time
+                    self.directorySize = self.calculateDirectorySize(atPath: self.inputDirectory)  // Calculate directory size
+                    self.isSuccess = true
+                    self.playSuccessSound()
+                    self.showFileTreeView = true  // Show the file tree view upon successful generation
+                } else {
+                    self.alertMessage = "Failed to generate file tree. Please check your permissions or file path."
+                    self.isSuccess = false
+                    self.playFailureSound()
+                    self.showFileTreeView = true  // Still show the file tree view with an error message
                 }
             }
         }
     }
 
-    private func generateFileTree() {
-        guard !inputDirectory.isEmpty else {
-            alertMessage = "Please select an input directory."
-            showAlert = true
-            playFailureSound()
-            print("Attempted to generate file tree without selecting input directory")
-            return
-        }
-
-        isGenerating = true
-        DispatchQueue.global(qos: .userInitiated).async {
-            let fileExtension: String
-            switch selectedFileFormat {
-            case "Markdown":
-                fileExtension = ".md"
-            case "Plain Text":
-                fileExtension = ".txt"
-            case "HTML":
-                fileExtension = ".html"
-            default:
-                fileExtension = ".md"
-            }
-            
-            let outputLocation = outputFile.isEmpty ? getUniqueOutputFileName(for: "\(inputDirectory)/file_tree\(fileExtension)") : getUniqueOutputFileName(for: outputFile)
-
-            let startTime = Date()
-            let generator = FileTreeGenerator(inputDirectory: inputDirectory, outputLocation: outputLocation, excludePatterns: Array(exclusionList), selectedFileFormat: selectedFileFormat)
-            
-            DispatchQueue.main.async {
-                if checkPermissions(for: outputLocation) {
-                    if generator.run() {
-                        let endTime = Date()
-                        let elapsedTime = endTime.timeIntervalSince(startTime)
-                        alertMessage = "File tree generated at \(outputLocation) in \(String(format: "%.2f", elapsedTime)) seconds."
-                        playSuccessSound()
-                        print("File tree generated successfully at \(outputLocation) in \(elapsedTime) seconds")
-                    } else {
-                        alertMessage = "Failed to generate file tree. Please check your permissions or file path."
-                        playFailureSound()
-                        print("Failed to generate file tree at \(outputLocation)")
-                    }
-                    showAlert = true
-                } else {
-                    showingAlertModal = true
-                    playFailureSound()
-                    print("Permission denied for output location: \(outputLocation)")
-                }
-                isGenerating = false
-            }
+    private func getFileExtension(for format: String) -> String {
+        switch format {
+        case "Markdown":
+            return ".md"
+        case "Plain Text":
+            return ".txt"
+        case "HTML":
+            return ".html"
+        default:
+            return ".md"
         }
     }
 
@@ -112,18 +127,25 @@ struct GenerateButtonView: View {
         return url.path
     }
 
-    private func checkPermissions(for path: String) -> Bool {
+    private func calculateDirectorySize(atPath path: String) -> Int64 {
         let fileManager = FileManager.default
-        let directory = (path as NSString).deletingLastPathComponent
-        var isDir: ObjCBool = true
+        var totalSize: Int64 = 0
 
-        if fileManager.fileExists(atPath: directory, isDirectory: &isDir), isDir.boolValue {
-            return fileManager.isWritableFile(atPath: directory)
+        if let enumerator = fileManager.enumerator(atPath: path) {
+            for file in enumerator {
+                let filePath = (path as NSString).appendingPathComponent(file as! String)
+                do {
+                    let attributes = try fileManager.attributesOfItem(atPath: filePath)
+                    if let fileSize = attributes[.size] as? Int64 {
+                        totalSize += fileSize
+                    }
+                } catch {
+                    print("Error calculating size for file: \(filePath)")
+                }
+            }
         }
-        return false
+        return totalSize
     }
-
-    // MARK: - Audio Setup
 
     private func setupAudioPlayers() {
         guard let successURL = Bundle.main.url(forResource: "Complete_Audio", withExtension: "mp3"),
@@ -146,19 +168,5 @@ struct GenerateButtonView: View {
 
     private func playFailureSound() {
         failureAudioPlayer?.play()
-    }
-}
-
-struct GenerateButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        GenerateButtonView(
-            inputDirectory: .constant(""),
-            alertMessage: .constant(""),
-            showAlert: .constant(false),
-            exclusionList: .constant([]),
-            outputFile: .constant(""),
-            showingAlertModal: .constant(false),
-            selectedFileFormat: "Markdown"
-        )
     }
 }

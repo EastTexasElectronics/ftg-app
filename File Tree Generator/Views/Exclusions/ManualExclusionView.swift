@@ -1,3 +1,4 @@
+// ManualExclusionView.swift
 import SwiftUI
 
 struct ManualExclusionView: View {
@@ -22,19 +23,28 @@ struct ManualExclusionView: View {
 
     private func addManualExclusion() {
         guard !manualExclusion.isEmpty else { return }
-        
+
         let patterns = manualExclusion.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-        
+
         for pattern in patterns {
-            exclusionList.insert(pattern)
-            print("Added manual exclusion: \(pattern)")
+            if validatePattern(pattern) {
+                exclusionList.insert(pattern)
+                print("Added manual exclusion: \(pattern)")
+            } else {
+                print("Invalid exclusion pattern: \(pattern)")
+            }
         }
-        
+
         manualExclusion = ""
+    }
+
+    private func validatePattern(_ pattern: String) -> Bool {
+        // Add your validation logic here
+        // For example, check for invalid characters or invalid formats
+        return !pattern.isEmpty // Simplified validation, add more robust checks as needed
     }
 }
 
-// MARK: - Preview
 struct ManualExclusionView_Previews: PreviewProvider {
     @State static var manualExclusion: String = ""
     @State static var exclusionList: Set<String> = []

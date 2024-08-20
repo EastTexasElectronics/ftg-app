@@ -1,3 +1,4 @@
+// FileTreeGenerator.swift
 import Foundation
 
 struct FileTreeGenerator {
@@ -5,108 +6,21 @@ struct FileTreeGenerator {
     var outputLocation: String
     var excludePatterns: [String]
     var selectedFileFormat: String
-    
+
     func shouldExclude(_ path: String) -> Bool {
-        for pattern in excludePatterns {
-            if path.contains(pattern) {
-                return true
-            }
-        }
-        return false
+        return excludePatterns.contains(where: { path.contains($0) })
     }
-    
+
     func isDirectory(_ url: URL) -> Bool {
         var isDir: ObjCBool = false
         FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir)
         return isDir.boolValue
     }
-    
-    func generateContent(from directory: URL) -> String {
-        switch selectedFileFormat {
-        case "Markdown":
-            return generateMarkdown(from: directory)
-        case "Plain Text":
-            return generatePlainText(from: directory)
-        case "HTML":
-            return generateHTML(from: directory)
-        default:
-            return generateMarkdown(from: directory)
-        }
-    }
-    
-    func generateMarkdown(from directory: URL) -> String {
+
+    func generateContent(from directory: URL, liveUpdate: @escaping (String) -> Void) -> Bool {
+        let fileManager = FileManager.default
         var result = ""
-        let fileManager = FileManager.default
-        
-        if let enumerator = fileManager.enumerator(at: directory, includingPropertiesForKeys: nil) {
-            for case let fileURL as URL in enumerator {
-                let relativePath = fileURL.path.replacingOccurrences(of: directory.path + "/", with: "")
-                
-                if shouldExclude(relativePath) {
-                    enumerator.skipDescendants()
-                    continue
-                }
-                
-                let depth = relativePath.components(separatedBy: "/").count
-                let indent = String(repeating: "  ", count: depth - 1)
-                
-                if isDirectory(fileURL) {
-                    result += "\(indent)- 📁 \(fileURL.lastPathComponent)/\n"
-                } else {
-                    result += "\(indent)- 📄 \(fileURL.lastPathComponent)\n"
-                }
-            }
-        }
-        return result
-    }
-    
-    func generatePlainText(from directory: URL) -> String {
-        var result = ""
-        let fileManager = FileManager.default
-        
-        if let enumerator = fileManager.enumerator(at: directory, includingPropertiesForKeys: nil) {
-            for case let fileURL as URL in enumerator {
-                let relativePath = fileURL.path.replacingOccurrences(of: directory.path + "/", with: "")
-                
-                if shouldExclude(relativePath) {
-                    enumerator.skipDescendants()
-                    continue
-                }
-                
-                let depth = relativePath.components(separatedBy: "/").count
-                let indent = String(repeating: "  ", count: depth - 1)
-                
-                if isDirectory(fileURL) {
-                    result += "\(indent)\(fileURL.lastPathComponent)/\n"
-                } else {
-                    result += "\(indent)\(fileURL.lastPathComponent)\n"
-                }
-            }
-        }
-        return result
-    }
-    
-    func generateHTML(from directory: URL) -> String {
-        var result = """
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>File Tree</title>
-            <style>
-                body { font-family: Arial, sans-serif; }
-                ul { list-style-type: none; }
-                .folder::before { content: "📁 "; }
-                .file::before { content: "📄 "; }
-            </style>
-        </head>
-        <body>
-        <ul>
-        """
-        
-        let fileManager = FileManager.default
-        
+
         if let enumerator = fileManager.enumerator(at: directory, includingPropertiesForKeys: nil) {
             var currentDepth = 0
             for case let fileURL as URL in enumerator {
@@ -116,30 +30,50 @@ struct FileTreeGenerator {
                     enumerator.skipDescendants()
                     continue
                 }
-                
+
                 let depth = relativePath.components(separatedBy: "/").count
-                if depth > currentDepth {
-                    result += "<ul>"
-                } else if depth < currentDepth {
-                    result += String(repeating: "</ul>", count: currentDepth - depth)
+                let newLine: String
+
+                if selectedFileFormat == "HTML" {
+                    newLine = generateHTMLLine(fileURL: fileURL, depth: depth, currentDepth: &currentDepth)
+                } else {
+                    newLine = generateTextLine(fileURL: fileURL, depth: depth)
                 }
-                currentDepth = depth
-                
-                let itemClass = isDirectory(fileURL) ? "folder" : "file"
-                result += "<li class=\"\(itemClass)\">\(fileURL.lastPathComponent)</li>"
+
+                result += newLine
+                liveUpdate(newLine)
             }
-            result += String(repeating: "</ul>", count: currentDepth)
+            if selectedFileFormat == "HTML" {
+                result += String(repeating: "</ul>", count: currentDepth)
+                liveUpdate(String(repeating: "</ul>", count: currentDepth))
+            }
         }
-        
-        result += """
-        </ul>
-        </body>
-        </html>
-        """
-        
+        return writeContent(result, to: URL(fileURLWithPath: outputLocation))
+    }
+
+    private func generateTextLine(fileURL: URL, depth: Int) -> String {
+        let indent = String(repeating: "  ", count: depth - 1)
+        if isDirectory(fileURL) {
+            return "\(indent)- 📁 \(fileURL.lastPathComponent)/\n"
+        } else {
+            return "\(indent)- 📄 \(fileURL.lastPathComponent)\n"
+        }
+    }
+
+    private func generateHTMLLine(fileURL: URL, depth: Int, currentDepth: inout Int) -> String {
+        var result = ""
+        if depth > currentDepth {
+            result += "<ul>"
+        } else if depth < currentDepth {
+            result += String(repeating: "</ul>", count: currentDepth - depth)
+        }
+        currentDepth = depth
+
+        let itemClass = isDirectory(fileURL) ? "folder" : "file"
+        result += "<li class=\"\(itemClass)\">\(fileURL.lastPathComponent)</li>"
         return result
     }
-    
+
     func writeContent(_ content: String, to location: URL) -> Bool {
         do {
             try content.write(to: location, atomically: true, encoding: .utf8)
@@ -150,12 +84,9 @@ struct FileTreeGenerator {
             return false
         }
     }
-    
-    func run() -> Bool {
+
+    func run(liveUpdate: @escaping (String) -> Void) -> Bool {
         let inputURL = URL(fileURLWithPath: inputDirectory)
-        let outputURL = URL(fileURLWithPath: outputLocation)
-        
-        let content = generateContent(from: inputURL)
-        return writeContent(content, to: outputURL)
+        return generateContent(from: inputURL, liveUpdate: liveUpdate)
     }
 }
